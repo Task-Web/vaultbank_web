@@ -1,0 +1,1 @@
+/home/adlsdztony/codes/web-v2/vaultbank_web/prompts/app_spec.txt

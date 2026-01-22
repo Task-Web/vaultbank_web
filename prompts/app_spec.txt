@@ -1,0 +1,704 @@
+<project_specification>
+  <project_name>vaultbank-banking-clone</project_name>
+
+  <overview>
+    A realistic VaultBank Bank clone for AI/automation task environments. All banking data is fake and state-defined via cookie-scoped backend.
+    The application simulates a complete online banking experience with accounts, credit cards, loans, investments, bill pay, and transfers.
+    No real financial connections - purely for experimental/testing purposes with both AI agents and human users.
+  </overview>
+
+  <technology_stack>
+    <frontend>
+      <framework>React 18</framework>
+      <routing>React Router v6</routing>
+      <styling>Chakra UI with custom VaultBank theme, Tailwind CSS for utilities</styling>
+      <build_tool>Vite</build_tool>
+      <language>JavaScript (JSX)</language>
+    </frontend>
+    <backend>
+      <runtime>Python 3.11+ with FastAPI</runtime>
+      <database>Cookie-scoped in-memory state (no database)</database>
+      <architecture>State-based architecture with /api/state endpoints</architecture>
+    </backend>
+    <communication>
+      <api>REST API with existing state endpoints + convenience endpoints</api>
+      <credentials>Cookie-based user identification (user_id)</credentials>
+      <mcp>Streamable HTTP MCP with get_accounts and execute_transfer tools</mcp>
+    </communication>
+  </technology_stack>
+
+  <prerequisites>
+    <environment_setup>
+      - Node.js 18+ and npm for frontend
+      - Python 3.11+ with virtual environment for backend
+      - Backend already set up with FastAPI and state management
+      - CORS configured for frontend origin
+      - Existing /state-manage route must be preserved
+    </environment_setup>
+  </prerequisites>
+
+  <feature_count>190</feature_count>
+
+  <security_and_access_control>
+    <user_roles>
+      <role name="user">
+        <permissions>
+          - View all accounts, balances, and transactions
+          - Perform transfers (internal and external)
+          - Pay bills and manage payees
+          - Manage credit cards and make payments
+          - View and apply for loans
+          - View investment accounts and simulate trades
+          - Download statements and tax documents
+          - Manage profile and preferences
+          - Freeze/unfreeze cards
+          - Cannot access other users' data (cookie-scoped)
+        </permissions>
+        <protected_routes>
+          - All routes require valid user_id cookie
+          - /state-manage - state editor (always available)
+          - No authentication beyond cookie identification
+        </protected_routes>
+      </role>
+    </user_roles>
+    <authentication>
+      <method>Cookie-based only (no login/password)</method>
+      <session_timeout>30 days (cookie max age)</session_timeout>
+      <password_requirements>N/A - no authentication</password_requirements>
+    </authentication>
+    <sensitive_operations>
+      - Transfers require confirmation modal
+      - Bill payments require review before submission
+      - Loan applications require confirmation
+      - Card freeze requires confirmation
+      - Extra loan payments require confirmation
+    </sensitive_operations>
+  </security_and_access_control>
+
+  <core_features>
+    <accounts_and_deposits>
+      - View account dashboard with all account types (Checking, Savings, CDs, Money Market)
+      - View individual account details with current balance, available balance, pending transactions
+      - View transaction history for each account with date, description, amount, running balance
+      - Search transactions by amount, date range, description
+      - Filter transactions by type, category, date range
+      - Export transaction history to CSV
+      - Account cards showing key info at glance (account type, nickname, balance)
+      - Sidebar navigation for switching between accounts
+      - Account statements (nested metadata in state)
+    </accounts_and_deposits>
+
+    <transfers>
+      - Internal transfers between user's own accounts
+      - External transfers to other bank accounts
+      - Transfer form with amount, from account, to account selection
+      - Transfer review and confirmation page
+      - Transfer status tracking (pending, completed, failed)
+      - Scheduled/recurring transfers setup
+      - Scheduled transfer management (edit, cancel, view history)
+      - Transfer confirmation with reference number
+      - Validation for insufficient funds, invalid accounts
+      - Convenience API endpoint: POST /api/transfer
+    </transfers>
+
+    <bill_pay>
+      - Bill pay overview showing scheduled and recent payments
+      - Add new payee (name, account number, address)
+      - Edit and delete payees
+      - One-time bill payment
+      - Recurring/scheduled bill payments
+      - Payment history with status
+      - Payment confirmation with reference number
+      - Delivery date estimation
+      - Cancel scheduled payments
+    </bill_pay>
+
+    <mobile_deposit>
+      - Mobile check deposit simulation
+      - Upload check image (front and back)
+      - Enter check amount
+      - Select deposit account
+      - Deposit review and confirmation
+      - Deposit status tracking
+      - Deposit history
+      - Form validation for image and amount
+    </mobile_deposit>
+
+    <credit_cards>
+      - Credit card summary (current balance, available credit, payment due date, minimum payment)
+      - Credit card transaction history with date, merchant, amount, category
+      - Filter transactions by date, category, amount
+      - Make credit card payment (minimum, full, custom amount)
+      - Payment confirmation with reference number
+      - Download/view monthly statements (PDF - simulated as URLs in state)
+      - Statement history (12+ months)
+      - Card freeze/unfreeze functionality
+      - Recent login/activity log
+    </credit_cards>
+
+    <loans>
+      - Loan overview for multiple types (auto, mortgage, personal)
+      - View existing loan details (balance, interest rate, payment amount, due date, payoff date)
+      - Loan application forms for each loan type
+      - Application form with personal info, loan amount, term, purpose
+      - Application submission and confirmation
+      - Payment schedule display (amortization)
+      - Payment history
+      - Make extra payments or pay off early
+      - Payoff calculation
+      - Payment confirmation
+    </loans>
+
+    <investments>
+      - Investment account overview (brokerage)
+      - Retirement account overview (401k, IRA)
+      - View holdings/positions with symbol, quantity, current value, gain/loss
+      - Simulated real-time price quotes (market data)
+      - Portfolio performance display (total value, day change, total return)
+      - Buy securities simulation
+      - Sell securities simulation
+      - Trade confirmation with reference number
+      - Trade history
+    </investments>
+
+    <statements_and_documents>
+      - Account statements list for all account types
+      - Download PDF statements (simulated as URLs in state)
+      - Statement delivery preferences (email, paper, paperless)
+      - Statement history (12+ months)
+      - Tax documents download (1099-INT, 1099-DIV, etc.)
+      - Year-end tax statements
+    </statements_and_documents>
+
+    <security_and_settings>
+      - Freeze/unfreeze credit and debit cards
+      - View recent login history and activity
+      - Security alerts for suspicious activity
+      - Personal information management (name, email, phone, address)
+      - Communication preferences (paperless, notifications)
+      - Account settings update
+      - Notification settings
+    </security_and_settings>
+
+    <search_and_filter>
+      - Transaction search by amount, date, description
+      - Advanced filters (account type, category, date range, amount range)
+      - Filter accounts by type
+      - Export filtered data to CSV
+      - Spending categorization
+    </search_and_filter>
+
+    <navigation_and_pages>
+      - Main dashboard (/)
+      - Sidebar navigation (VaultBank-style)
+      - Top navigation bar with accounts dropdown
+      - Individual account detail pages (/accounts/:id)
+      - Transfer page (/transfers)
+      - Bill pay center (/bill-pay)
+      - Credit card management (/credit-cards)
+      - Loan management (/loans)
+      - Investment accounts (/investments)
+      - State management page (/state-manage) - REQUIRED
+      - Support/contact page
+    </navigation_and_pages>
+
+    <ui_and_ux>
+      - VaultBank blue color scheme (#00539F primary)
+      - Custom fonts (Inter or similar)
+      - Account cards with key information
+      - Quick actions (Transfer, Pay bills, etc.)
+      - Confirmation modals before actions
+      - Success/failure notifications
+      - Loading states and spinners
+      - Hover effects on interactive elements
+      - Desktop-focused design
+      - Intuitive navigation flows
+    </ui_and_ux>
+
+    <state_and_mcp>
+      - State read operations via GET /api/state
+      - State modify operations via PATCH /api/state
+      - MCP tool: get_accounts (read accounts and balances)
+      - MCP tool: execute_transfer (perform transfers)
+      - Direct state modification by MCP tools
+      - Sample data initialization (2-3 accounts, 30-90 days of transactions)
+      - Persistent state across sessions via cookie
+    </state_and_mcp>
+
+    <convenience_api_endpoints>
+      - POST /api/transfer - Execute transfer
+      - POST /api/payment - Process bill/credit card payment
+      - GET /api/accounts - Get account summary
+      - All operations also available via state API
+    </convenience_api_endpoints>
+  </core_features>
+
+  <database_schema>
+    <tables>
+      <data_state_structure>
+        The application uses cookie-scoped state with no traditional database.
+        All data is stored in a single JSON object per user with the following structure:
+
+        data:
+          accounts: Array[Account]
+            - id: string (unique account identifier)
+            - type: enum (checking, savings, cd, money_market)
+            - nickname: string
+            - account_number: string (last 4 digits)
+            - routing_number: string
+            - current_balance: number
+            - available_balance: number
+            - currency: string (default "USD")
+            - opened_date: ISO date string
+            - transactions: Array[Transaction]
+              * id: string
+              * date: ISO date string
+              * description: string
+              * amount: number
+              * running_balance: number
+              * category: string
+              * type: enum (debit, credit, pending)
+              * merchant?: string
+            - statements: Array[Statement]
+              * period: string (e.g., "January 2024")
+              * url: string (PDF URL)
+              * generated_date: ISO date string
+            - status: enum (active, frozen, closed)
+            - card_frozen: boolean
+
+          credit_cards: Array[CreditCard]
+            - id: string
+            - card_number: string (last 4 digits)
+            - cardholder_name: string
+            - expiration_date: string (MM/YY)
+            - current_balance: number
+            - available_credit: number
+            - credit_limit: number
+            - payment_due_date: ISO date string
+            - minimum_payment: number
+            - statements: Array[Statement]
+            - transactions: Array[Transaction] (similar to accounts)
+            - status: enum (active, frozen, closed)
+            - card_frozen: boolean
+
+          loans: Array[Loan]
+            - id: string
+            - type: enum (auto, mortgage, personal)
+            - loan_number: string
+            - original_amount: number
+            - current_balance: number
+            - interest_rate: number (percentage)
+            - monthly_payment: number
+            - due_date: ISO date string
+            - start_date: ISO date string
+            - maturity_date: ISO date string
+            - payment_schedule: Array[Payment]
+              * date: ISO date string
+              * amount: number
+              * principal: number
+              * interest: number
+              * remaining_balance: number
+              * status: enum (scheduled, paid, pending)
+            - payment_history: Array[Payment]
+            - status: enum (active, paid_off, in_application)
+
+          investments: Investment
+            - brokerage: BrokerageAccount
+              * account_number: string
+              * cash_balance: number
+              * total_value: number
+              * holdings: Array[Holding]
+                - symbol: string
+                - name: string
+                - quantity: number
+                - average_cost: number
+                - current_price: number
+                - current_value: number
+                - gain_loss: number
+                - gain_loss_percent: number
+              - trades: Array[Trade]
+                * id: string
+                * symbol: string
+                * type: enum (buy, sell)
+                * quantity: number
+                * price: number
+                * total: number
+                * date: ISO date string
+            - retirement: Array[RetirementAccount]
+              * Similar structure to brokerage
+              * account_type: enum (401k, IRA, Roth_IRA)
+
+          bill_pay: BillPay
+            - payees: Array[Payee]
+              * id: string
+              * name: string
+              * account_number: string
+              * address: string
+              * nickname?: string
+            - scheduled_payments: Array[ScheduledPayment]
+              * id: string
+              * payee_id: string
+              * amount: number
+              * frequency: enum (once, weekly, monthly, yearly)
+              * next_date: ISO date string
+              * from_account_id: string
+              * status: enum (active, cancelled, completed)
+            - payment_history: Array[Payment]
+
+          transfers: Transfers
+            - history: Array[Transfer]
+              * id: string
+              * from_account_id: string
+              * to_account_id: string (or external account info)
+              * amount: number
+              * date: ISO date string
+              * status: enum (pending, completed, failed)
+              * type: enum (internal, external)
+            - scheduled: Array[ScheduledTransfer]
+              * Similar to scheduled bill payments
+
+          user_profile: UserProfile
+            - first_name: string
+            - last_name: string
+            - email: string
+            - phone: string
+            - address: Address
+              * street: string
+              * city: string
+              * state: string
+              * zip: string
+            - communication_preferences:
+              * paperless: boolean
+              * email_notifications: boolean
+              * sms_notifications: boolean
+            - security:
+              * recent_logins: Array[LoginEvent]
+                - timestamp: ISO date string
+                - ip_address: string
+                - device: string
+                - location: string
+
+        meta:
+          - created_at: ISO date string
+          - updated_at: ISO date string
+          - version: number
+          - type: string
+
+        note: string or null
+      </data_state_structure>
+    </tables>
+  </database_schema>
+
+  <api_endpoints_summary>
+    <existing_state_endpoints>
+      - GET /api/state - Fetch current user state
+      - PUT /api/state - Replace entire state
+      - PATCH /api/state - Merge into existing state
+      - DELETE /api/state - Reset state
+      - GET /api/info - System and request info
+    </existing_state_endpoints>
+
+    <convenience_endpoints>
+      - POST /api/transfer - Execute transfer
+      - POST /api/payment - Process payment (bill or credit card)
+      - GET /api/accounts - Get account summary
+    </convenience_endpoints>
+
+    <file_endpoints>
+      - POST /api/files - Upload files
+      - GET /api/files - List user files
+      - GET /api/files/{filename} - Fetch file
+    </file_endpoints>
+
+    <mcp_tools>
+      - get_accounts - Read accounts and balances
+      - execute_transfer - Perform transfer with direct state modification
+    </mcp_tools>
+  </api_endpoints_summary>
+
+  <ui_layout>
+    <main_structure>
+      Desktop-first layout with VaultBank-style sidebar navigation:
+
+      Left Sidebar (fixed width ~250px):
+        - Logo/branding (VaultBank blue)
+        - Navigation items:
+          * Accounts (with sub-menu for each account)
+          * Transfers
+          * Bill Pay
+          * Credit Cards
+          * Loans
+          * Investments
+          * Statements & Documents
+          * Profile & Settings
+          * Secure Messages
+        - Support/Contact link
+        - State Management link (required)
+
+      Top Navigation Bar:
+        - Account selector dropdown (quick account switch)
+        - Search box (transactions search)
+        - Quick actions buttons (Transfer, Pay Bills)
+        - User profile menu
+        - Notifications icon
+
+      Main Content Area:
+        - Page header with title and breadcrumbs
+        - Page-specific content (varies by route)
+        - Account cards on dashboard (grid layout)
+        - Tables for transactions/history
+        - Forms for transfers/payments with validation
+        - Modals for confirmations
+        - Toast notifications for feedback
+    </main_structure>
+
+    <route_specific_layouts>
+      <dashboard_route>
+        - Hero section with total balance across all accounts
+        - Account cards grid (checking, savings, etc.)
+        - Quick actions section
+        - Recent transactions across all accounts
+        - Upcoming bills and scheduled transfers
+      </dashboard_route>
+
+      <account_details_route>
+        - Account header with balance, account number
+        - Action buttons (Transfer, Pay, Freeze)
+        - Tabs: Transactions, Details, Statements
+        - Transactions table with filters
+        - Account details panel
+      </account_details_route>
+
+      <transfers_route>
+        - Transfer type selection (internal/external)
+        - Form: From account, To account, Amount, Date, Memo
+        - Review step with confirmation
+        - Success page with reference number
+      </transfers_route>
+
+      <bill_pay_route>
+        - Tabs: Pay Bills, Payees, History, Scheduled
+        - Pay bills form: Select payee, amount, date
+        - Payee management section
+        - Payment history table
+      </bill_pay_route>
+
+      <state_manage_route>
+        - Tab navigation: Documentation, Manage State
+        - Documentation tab: State field reference, example
+        - Manage State tab: JSON editor, Save, Reset, Download
+        - Must preserve this route as required by basesite
+      </state_manage_route>
+    </route_specific_layouts>
+  </ui_layout>
+
+  <design_system>
+    <color_palette>
+      <primary>#00539F - VaultBank Blue</primary>
+      <primary_dark>#003B6E - Darker blue for hover states</primary_dark>
+      <primary_light>#E6F0F9 - Light blue for backgrounds</primary_light>
+      <secondary>#4A5568 - Neutral gray for text</secondary>
+      <success>#38A169 - Green for success states</success>
+      <error>#E53E3E - Red for errors</error>
+      <warning>#DD6B20 - Orange for warnings</warning>
+      <background>#F7FAFC - Light gray background</background>
+      <surface>#FFFFFF - White surface for cards</surface>
+      <border>#E2E8F0 - Border color</border>
+    </color_palette>
+
+    <typography>
+      <font_family>Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif</font_family>
+      <heading_1>32px, font-weight: 700, line-height: 1.2</heading_1>
+      <heading_2>24px, font-weight: 600, line-height: 1.3</heading_2>
+      <heading_3>20px, font-weight: 600, line-height: 1.4</heading_3>
+      <body>16px, font-weight: 400, line-height: 1.5</body>
+      <small>14px, font-weight: 400, line-height: 1.5</small>
+      <caption>12px, font-weight: 400, line-height: 1.4</caption>
+      <mono>"SF Mono", "Monaco", "Inconsolata", monospace (for numbers, codes)</mono>
+    </typography>
+
+    <component_styles>
+      <buttons>
+        - Primary: VaultBank blue background, white text, rounded corners
+        - Secondary: White background, blue text, blue border
+        - Hover effects: Slight color darkening, transform: translateY(-1px)
+        - Focus rings: 2px solid primary_light
+      </buttons>
+
+      <cards>
+        - White background, subtle border, rounded corners
+        - Box shadow: 0 1px 3px rgba(0,0,0,0.1)
+        - Hover: Slight shadow increase
+      </cards>
+
+      <inputs>
+        - Border: 1px solid #E2E8F0
+        - Focus: Border color changes to primary, ring appears
+        - Error state: Red border, error message below
+      </inputs>
+
+      <tables>
+        - Zebra striping for rows
+        - Hover effect on rows
+        - Sortable column headers
+        - Pagination controls
+      </tables>
+
+      <modals>
+        - Overlay backdrop with blur
+        - Centered modal content
+        - Close button in top-right
+        - Action buttons at bottom (right-aligned)
+      </modals>
+
+      <toasts>
+        - Position: Top-right
+        - Auto-dismiss after 5 seconds
+        - Color-coded by type (success, error, info)
+      </toasts>
+    </component_styles>
+  </design_system>
+
+  <implementation_steps>
+    <step number="1">
+      <title>Phase 1: Foundation and Core Structure</title>
+      <tasks>
+        - Set up React project with Vite and install dependencies
+        - Install and configure Chakra UI with custom VaultBank theme
+        - Set up React Router with main routes
+        - Create sidebar navigation layout component
+        - Create top navigation bar component
+        - Design state schema and data structure
+        - Create sample state data (2-3 accounts, 30-90 days of transactions)
+        - Implement state API client (apiClient.js)
+        - Create /state-manage page (preserve existing functionality)
+        - Build dashboard page with account cards
+        - Build account detail pages
+        - Implement account card components with VaultBank styling
+      </tasks>
+    </step>
+
+    <step number="2">
+      <title>Phase 2: Core Banking Features</title>
+      <tasks>
+        - Build transfer page with form validation
+        - Implement internal transfer functionality
+        - Implement external transfer functionality
+        - Add transfer confirmation flow
+        - Create convenience API endpoint: POST /api/transfer
+        - Build transaction history components
+        - Implement transaction search functionality
+        - Add transaction filters (date, category, amount)
+        - Implement CSV export for transactions
+        - Build credit card management pages
+        - Implement credit card payment flow
+        - Add credit card transaction history
+        - Build bill pay center pages
+        - Implement payee management (add, edit, delete)
+        - Implement one-time bill payments
+        - Implement recurring/scheduled bill payments
+        - Add payment history and tracking
+      </tasks>
+    </step>
+
+    <step number="3">
+      <title>Phase 3: Advanced Features and Polish</title>
+      <tasks>
+        - Build loan management pages
+        - Implement loan application forms for each type (auto, mortgage, personal)
+        - Display loan details and payment schedules
+        - Implement extra payment functionality
+        - Build investment account pages
+        - Display holdings and portfolio performance
+        - Implement simulated buy/sell trading
+        - Add market data display (simulated)
+        - Build statements and documents pages
+        - Implement statement download (PDF URLs in state)
+        - Add statement delivery preferences
+        - Add tax document downloads
+        - Implement card freeze/unfreeze functionality
+        - Display recent login history
+        - Build profile and settings pages
+        - Add notification preferences
+        - Implement MCP tool: get_accounts
+        - Implement MCP tool: execute_transfer
+        - Add confirmation modals for all critical actions
+        - Implement success/error notifications
+        - Add loading states for all async operations
+        - Add hover effects and micro-interactions
+        - Polish visual design to match VaultBank banking
+        - Test all features end-to-end
+        - Validate state persistence across sessions
+      </tasks>
+    </step>
+
+    <step number="4">
+      <title>Phase 4: Testing and Quality Assurance</title>
+      <tasks>
+        - Test all ~190 features
+        - Verify MCP tools work correctly
+        - Test state persistence and cookie handling
+        - Test convenience API endpoints
+        - Validate all form inputs and error handling
+        - Ensure /state-manage page is fully functional
+        - Cross-browser testing (Chrome, Firefox, Safari)
+        - Performance optimization
+        - Final design polish
+      </tasks>
+    </step>
+  </implementation_steps>
+
+  <success_criteria>
+    <functionality>
+      - All ~190 features work end-to-end without errors
+      - State persists correctly across sessions via cookie
+      - All form validations work properly
+      - Convenience API endpoints function correctly
+      - MCP tools can read accounts and execute transfers
+      - State modifications apply immediately and persist
+      - Sample data initializes properly on first load
+      - Transfers, payments, and all actions update state correctly
+      - Statement downloads work (URL-based)
+      - All confirmation flows prevent accidental actions
+    </functionality>
+
+    <user_experience>
+      - UI closely matches VaultBank Bank visual design
+      - Navigation is intuitive with clear labels
+      - All pages load quickly (< 2 seconds)
+      - Hover states provide clear feedback
+      - Loading states indicate progress
+      - Confirmations prevent errors
+      - Notifications provide clear success/error messages
+      - Forms validate input and show helpful error messages
+      - Desktop-focused design works well on screens 1024px+
+      - Color scheme uses VaultBank blue appropriately
+      - Typography is readable and professional
+    </user_experience>
+
+    <technical_quality>
+      - Code is well-organized with clear component structure
+      - State operations use PATCH/PUT appropriately
+      - API error handling displays user-friendly messages
+      - MCP tools integrate correctly with backend
+      - Cookie handling works for user identification
+      - No console errors or warnings
+      - Components are reusable where appropriate
+      - State structure is consistent and well-documented
+      - /state-manage page is fully functional (required)
+    </technical_quality>
+
+    <design_polish>
+      - VaultBank blue (#00539F) used as primary color
+      - Consistent spacing and alignment throughout
+      - Professional typography with Inter font
+      - Smooth transitions and hover effects
+      - Account cards display key information clearly
+      - Tables are readable with proper styling
+      - Modals are centered and properly overlaid
+      - Toast notifications appear in correct position
+      - Loading spinners indicate activity
+      - Overall appearance matches production banking site quality
+    </design_polish>
+  </success_criteria>
+</project_specification>

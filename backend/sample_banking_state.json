@@ -1,0 +1,1896 @@
+{
+  "accounts": [
+    {
+      "id": "acct_12414349",
+      "type": "checking",
+      "nickname": "Primary Checking",
+      "account_number": "4821",
+      "routing_number": "021000021",
+      "current_balance": 5776.0,
+      "available_balance": 5776.0,
+      "currency": "USD",
+      "opened_date": "2022-12-30T00:07:23.454367",
+      "transactions": [
+        {
+          "id": "txn_523136520",
+          "date": "2025-12-29T00:07:23.454377",
+          "description": "Starbucks",
+          "amount": 70.0,
+          "running_balance": 5776.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Starbucks"
+        },
+        {
+          "id": "txn_651120001",
+          "date": "2025-12-27T00:07:23.454377",
+          "description": "Shell Gas Station",
+          "amount": 132.0,
+          "running_balance": 5644.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Shell Gas Station"
+        },
+        {
+          "id": "txn_968875220",
+          "date": "2025-12-26T00:07:23.454377",
+          "description": "Starbucks",
+          "amount": 152.0,
+          "running_balance": 5492.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Starbucks"
+        },
+        {
+          "id": "txn_540000857",
+          "date": "2025-12-26T00:07:23.454377",
+          "description": "Whole Foods",
+          "amount": 139.0,
+          "running_balance": 5353.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Whole Foods"
+        },
+        {
+          "id": "txn_403105477",
+          "date": "2025-12-24T00:07:23.454377",
+          "description": "Shell Gas Station",
+          "amount": -40.0,
+          "running_balance": 5393.0,
+          "category": "Food & Dining",
+          "type": "credit",
+          "merchant": "Shell Gas Station"
+        },
+        {
+          "id": "txn_129977195",
+          "date": "2025-12-24T00:07:23.454377",
+          "description": "Gym Membership",
+          "amount": 120.0,
+          "running_balance": 5273.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Gym Membership"
+        },
+        {
+          "id": "txn_374835651",
+          "date": "2025-12-24T00:07:23.454377",
+          "description": "Home Depot",
+          "amount": 119.0,
+          "running_balance": 5154.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Home Depot"
+        },
+        {
+          "id": "txn_504432548",
+          "date": "2025-12-21T00:07:23.454377",
+          "description": "Uber",
+          "amount": 8.0,
+          "running_balance": 5146.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Uber"
+        },
+        {
+          "id": "txn_902253356",
+          "date": "2025-12-20T00:07:23.454377",
+          "description": "AT&T Wireless",
+          "amount": 127.0,
+          "running_balance": 5019.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "AT&T Wireless"
+        },
+        {
+          "id": "txn_396776769",
+          "date": "2025-12-19T00:07:23.454377",
+          "description": "Pizza Hut",
+          "amount": 38.0,
+          "running_balance": 4981.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Pizza Hut"
+        },
+        {
+          "id": "txn_195360771",
+          "date": "2025-12-17T00:07:23.454377",
+          "description": "Uber",
+          "amount": -73.0,
+          "running_balance": 5054.0,
+          "category": "Food & Dining",
+          "type": "credit",
+          "merchant": "Uber"
+        },
+        {
+          "id": "txn_489377937",
+          "date": "2025-12-17T00:07:23.454377",
+          "description": "Water Utility",
+          "amount": 113.0,
+          "running_balance": 4941.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Water Utility"
+        },
+        {
+          "id": "txn_578351581",
+          "date": "2025-12-15T00:07:23.454377",
+          "description": "Home Depot",
+          "amount": 183.0,
+          "running_balance": 4758.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Home Depot"
+        },
+        {
+          "id": "txn_352796440",
+          "date": "2025-12-14T00:07:23.454377",
+          "description": "Netflix",
+          "amount": 23.0,
+          "running_balance": 4735.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Netflix"
+        },
+        {
+          "id": "txn_609751829",
+          "date": "2025-12-14T00:07:23.454377",
+          "description": "Costco",
+          "amount": 31.0,
+          "running_balance": 4704.0,
+          "category": "Transfer",
+          "type": "debit",
+          "merchant": "Costco"
+        },
+        {
+          "id": "txn_285185511",
+          "date": "2025-12-14T00:07:23.454377",
+          "description": "Walgreens",
+          "amount": -99.0,
+          "running_balance": 4803.0,
+          "category": "Entertainment",
+          "type": "credit",
+          "merchant": "Walgreens"
+        },
+        {
+          "id": "txn_608038970",
+          "date": "2025-12-13T00:07:23.454377",
+          "description": "Netflix",
+          "amount": 20.0,
+          "running_balance": 4783.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Netflix"
+        },
+        {
+          "id": "txn_753448448",
+          "date": "2025-12-13T00:07:23.454377",
+          "description": "Pizza Hut",
+          "amount": 110.0,
+          "running_balance": 4673.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Pizza Hut"
+        },
+        {
+          "id": "txn_696922251",
+          "date": "2025-12-12T00:07:23.454377",
+          "description": "Amazon",
+          "amount": 69.0,
+          "running_balance": 4604.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Amazon"
+        },
+        {
+          "id": "txn_741255431",
+          "date": "2025-12-11T00:07:23.454377",
+          "description": "Electric Company",
+          "amount": 75.0,
+          "running_balance": 4529.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Electric Company"
+        },
+        {
+          "id": "txn_579422558",
+          "date": "2025-12-11T00:07:23.454377",
+          "description": "Whole Foods",
+          "amount": 40.0,
+          "running_balance": 4489.0,
+          "category": "Transfer",
+          "type": "debit",
+          "merchant": "Whole Foods"
+        },
+        {
+          "id": "txn_304313809",
+          "date": "2025-12-09T00:07:23.454377",
+          "description": "Uber",
+          "amount": 186.0,
+          "running_balance": 4303.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Uber"
+        },
+        {
+          "id": "txn_163264796",
+          "date": "2025-12-09T00:07:23.454377",
+          "description": "Netflix",
+          "amount": 119.0,
+          "running_balance": 4184.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Netflix"
+        },
+        {
+          "id": "txn_403915883",
+          "date": "2025-12-09T00:07:23.454377",
+          "description": "Gym Membership",
+          "amount": 71.0,
+          "running_balance": 4113.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Gym Membership"
+        },
+        {
+          "id": "txn_543412949",
+          "date": "2025-12-07T00:07:23.454377",
+          "description": "Shell Gas Station",
+          "amount": 22.0,
+          "running_balance": 4091.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Shell Gas Station"
+        },
+        {
+          "id": "txn_651378992",
+          "date": "2025-12-07T00:07:23.454377",
+          "description": "Target",
+          "amount": 72.0,
+          "running_balance": 4019.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Target"
+        },
+        {
+          "id": "txn_129797945",
+          "date": "2025-12-07T00:07:23.454377",
+          "description": "Water Utility",
+          "amount": 49.0,
+          "running_balance": 3970.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Water Utility"
+        },
+        {
+          "id": "txn_137799490",
+          "date": "2025-12-06T00:07:23.454377",
+          "description": "Shell Gas Station",
+          "amount": 178.0,
+          "running_balance": 3792.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Shell Gas Station"
+        },
+        {
+          "id": "txn_459944264",
+          "date": "2025-12-03T00:07:23.454377",
+          "description": "Uber",
+          "amount": 136.0,
+          "running_balance": 3656.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Uber"
+        },
+        {
+          "id": "txn_965642550",
+          "date": "2025-12-03T00:07:23.454377",
+          "description": "AT&T Wireless",
+          "amount": 103.0,
+          "running_balance": 3553.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "AT&T Wireless"
+        },
+        {
+          "id": "txn_481064577",
+          "date": "2025-11-30T00:07:23.454377",
+          "description": "Shell Gas Station",
+          "amount": 103.0,
+          "running_balance": 3450.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Shell Gas Station"
+        },
+        {
+          "id": "txn_265215665",
+          "date": "2025-11-30T00:07:23.454377",
+          "description": "Electric Company",
+          "amount": 121.0,
+          "running_balance": 3329.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Electric Company"
+        },
+        {
+          "id": "txn_291213669",
+          "date": "2025-11-29T00:07:23.454377",
+          "description": "Starbucks",
+          "amount": 196.0,
+          "running_balance": 3133.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Starbucks"
+        },
+        {
+          "id": "txn_961873611",
+          "date": "2025-11-29T00:07:23.454377",
+          "description": "Electric Company",
+          "amount": 125.0,
+          "running_balance": 3008.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Electric Company"
+        },
+        {
+          "id": "txn_391946549",
+          "date": "2025-11-29T00:07:23.454377",
+          "description": "Water Utility",
+          "amount": 134.0,
+          "running_balance": 2874.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Water Utility"
+        },
+        {
+          "id": "txn_717071013",
+          "date": "2025-11-28T00:07:23.454377",
+          "description": "Uber",
+          "amount": 161.0,
+          "running_balance": 2713.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Uber"
+        },
+        {
+          "id": "txn_345796922",
+          "date": "2025-11-28T00:07:23.454377",
+          "description": "Starbucks",
+          "amount": 175.0,
+          "running_balance": 2538.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Starbucks"
+        },
+        {
+          "id": "txn_389700142",
+          "date": "2025-11-26T00:07:23.454377",
+          "description": "Whole Foods",
+          "amount": 81.0,
+          "running_balance": 2457.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Whole Foods"
+        },
+        {
+          "id": "txn_717890696",
+          "date": "2025-11-25T00:07:23.454377",
+          "description": "Shell Gas Station",
+          "amount": 47.0,
+          "running_balance": 2410.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Shell Gas Station"
+        },
+        {
+          "id": "txn_336697255",
+          "date": "2025-11-25T00:07:23.454377",
+          "description": "Netflix",
+          "amount": 158.0,
+          "running_balance": 2252.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Netflix"
+        },
+        {
+          "id": "txn_660984422",
+          "date": "2025-11-24T00:07:23.454377",
+          "description": "Electric Company",
+          "amount": 62.0,
+          "running_balance": 2190.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Electric Company"
+        },
+        {
+          "id": "txn_960224617",
+          "date": "2025-11-23T00:07:23.454377",
+          "description": "Whole Foods",
+          "amount": 11.0,
+          "running_balance": 2179.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Whole Foods"
+        },
+        {
+          "id": "txn_601449035",
+          "date": "2025-11-20T00:07:23.454377",
+          "description": "Electric Company",
+          "amount": 73.0,
+          "running_balance": 2106.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Electric Company"
+        },
+        {
+          "id": "txn_416607006",
+          "date": "2025-11-17T00:07:23.454377",
+          "description": "Uber",
+          "amount": 130.0,
+          "running_balance": 1976.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Uber"
+        },
+        {
+          "id": "txn_130190375",
+          "date": "2025-11-16T00:07:23.454377",
+          "description": "Electric Company",
+          "amount": 190.0,
+          "running_balance": 1786.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Electric Company"
+        },
+        {
+          "id": "txn_702669161",
+          "date": "2025-11-16T00:07:23.454377",
+          "description": "Electric Company",
+          "amount": 8.0,
+          "running_balance": 1778.0,
+          "category": "Transfer",
+          "type": "debit",
+          "merchant": "Electric Company"
+        },
+        {
+          "id": "txn_471988490",
+          "date": "2025-11-15T00:07:23.454377",
+          "description": "Walgreens",
+          "amount": 21.0,
+          "running_balance": 1757.0,
+          "category": "Transfer",
+          "type": "debit",
+          "merchant": "Walgreens"
+        },
+        {
+          "id": "txn_845336096",
+          "date": "2025-11-15T00:07:23.454377",
+          "description": "Amazon",
+          "amount": 26.0,
+          "running_balance": 1731.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Amazon"
+        },
+        {
+          "id": "txn_527964115",
+          "date": "2025-11-14T00:07:23.454377",
+          "description": "Home Depot",
+          "amount": 171.0,
+          "running_balance": 1560.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Home Depot"
+        },
+        {
+          "id": "txn_635520494",
+          "date": "2025-11-14T00:07:23.454377",
+          "description": "Gym Membership",
+          "amount": 160.0,
+          "running_balance": 1400.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Gym Membership"
+        },
+        {
+          "id": "txn_706006129",
+          "date": "2025-11-14T00:07:23.454377",
+          "description": "Whole Foods",
+          "amount": 161.0,
+          "running_balance": 1239.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Whole Foods"
+        },
+        {
+          "id": "txn_654370778",
+          "date": "2025-11-12T00:07:23.454377",
+          "description": "Electric Company",
+          "amount": 14.0,
+          "running_balance": 1225.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Electric Company"
+        },
+        {
+          "id": "txn_323129545",
+          "date": "2025-11-12T00:07:23.454377",
+          "description": "Electric Company",
+          "amount": 41.0,
+          "running_balance": 1184.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Electric Company"
+        },
+        {
+          "id": "txn_617484864",
+          "date": "2025-11-12T00:07:23.454377",
+          "description": "Walgreens",
+          "amount": 45.0,
+          "running_balance": 1139.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Walgreens"
+        },
+        {
+          "id": "txn_331210275",
+          "date": "2025-11-11T00:07:23.454377",
+          "description": "Uber",
+          "amount": 34.0,
+          "running_balance": 1105.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Uber"
+        },
+        {
+          "id": "txn_546724262",
+          "date": "2025-11-08T00:07:23.454377",
+          "description": "AT&T Wireless",
+          "amount": 160.0,
+          "running_balance": 945.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "AT&T Wireless"
+        },
+        {
+          "id": "txn_328540239",
+          "date": "2025-11-08T00:07:23.454377",
+          "description": "Walgreens",
+          "amount": -162.0,
+          "running_balance": 1107.0,
+          "category": "Entertainment",
+          "type": "credit",
+          "merchant": "Walgreens"
+        },
+        {
+          "id": "txn_157243382",
+          "date": "2025-11-07T00:07:23.454377",
+          "description": "Pizza Hut",
+          "amount": 200.0,
+          "running_balance": 907.0,
+          "category": "Transfer",
+          "type": "debit",
+          "merchant": "Pizza Hut"
+        },
+        {
+          "id": "txn_118697484",
+          "date": "2025-11-06T00:07:23.454377",
+          "description": "Gym Membership",
+          "amount": 8.0,
+          "running_balance": 899.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Gym Membership"
+        },
+        {
+          "id": "txn_310266727",
+          "date": "2025-11-06T00:07:23.454377",
+          "description": "Starbucks",
+          "amount": 146.0,
+          "running_balance": 753.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Starbucks"
+        },
+        {
+          "id": "txn_917270852",
+          "date": "2025-11-06T00:07:23.454377",
+          "description": "Shell Gas Station",
+          "amount": 192.0,
+          "running_balance": 561.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Shell Gas Station"
+        },
+        {
+          "id": "txn_901094649",
+          "date": "2025-11-05T00:07:23.454377",
+          "description": "Costco",
+          "amount": 28.0,
+          "running_balance": 533.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Costco"
+        },
+        {
+          "id": "txn_909068374",
+          "date": "2025-11-05T00:07:23.454377",
+          "description": "Electric Company",
+          "amount": -8.0,
+          "running_balance": 541.0,
+          "category": "Utilities",
+          "type": "credit",
+          "merchant": "Electric Company"
+        },
+        {
+          "id": "txn_242761798",
+          "date": "2025-11-04T00:07:23.454377",
+          "description": "Walgreens",
+          "amount": 43.0,
+          "running_balance": 498.0,
+          "category": "Transfer",
+          "type": "debit",
+          "merchant": "Walgreens"
+        },
+        {
+          "id": "txn_538749957",
+          "date": "2025-11-04T00:07:23.454377",
+          "description": "Electric Company",
+          "amount": 13.0,
+          "running_balance": 485.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Electric Company"
+        },
+        {
+          "id": "txn_242783962",
+          "date": "2025-11-03T00:07:23.454377",
+          "description": "AT&T Wireless",
+          "amount": 101.0,
+          "running_balance": 384.0,
+          "category": "Transfer",
+          "type": "debit",
+          "merchant": "AT&T Wireless"
+        },
+        {
+          "id": "txn_546582285",
+          "date": "2025-11-03T00:07:23.454377",
+          "description": "Electric Company",
+          "amount": 72.0,
+          "running_balance": 312.0,
+          "category": "Transportation",
+          "type": "debit",
+          "merchant": "Electric Company"
+        },
+        {
+          "id": "txn_415747981",
+          "date": "2025-11-01T00:07:23.454377",
+          "description": "Home Depot",
+          "amount": 173.0,
+          "running_balance": 139.0,
+          "category": "Healthcare",
+          "type": "debit",
+          "merchant": "Home Depot"
+        },
+        {
+          "id": "txn_640909483",
+          "date": "2025-11-01T00:07:23.454377",
+          "description": "Uber",
+          "amount": 151.0,
+          "running_balance": -12.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Uber"
+        },
+        {
+          "id": "txn_872909109",
+          "date": "2025-11-01T00:07:23.454377",
+          "description": "Target",
+          "amount": 153.0,
+          "running_balance": -165.0,
+          "category": "Utilities",
+          "type": "debit",
+          "merchant": "Target"
+        },
+        {
+          "id": "txn_857293711",
+          "date": "2025-10-31T00:07:23.454377",
+          "description": "Walgreens",
+          "amount": 70.0,
+          "running_balance": -235.0,
+          "category": "Transportation",
+          "type": "debit",
+          "merchant": "Walgreens"
+        }
+      ],
+      "statements": [
+        {
+          "period": "December 2025",
+          "url": "/api/statements/acct_12414349/december_2025.pdf",
+          "generated_date": "2025-12-01T00:07:23.454927"
+        },
+        {
+          "period": "November 2025",
+          "url": "/api/statements/acct_12414349/november_2025.pdf",
+          "generated_date": "2025-11-01T00:07:23.454927"
+        },
+        {
+          "period": "October 2025",
+          "url": "/api/statements/acct_12414349/october_2025.pdf",
+          "generated_date": "2025-10-01T00:07:23.454927"
+        },
+        {
+          "period": "September 2025",
+          "url": "/api/statements/acct_12414349/september_2025.pdf",
+          "generated_date": "2025-09-01T00:07:23.454927"
+        },
+        {
+          "period": "August 2025",
+          "url": "/api/statements/acct_12414349/august_2025.pdf",
+          "generated_date": "2025-08-01T00:07:23.454927"
+        },
+        {
+          "period": "August 2025",
+          "url": "/api/statements/acct_12414349/august_2025.pdf",
+          "generated_date": "2025-08-01T00:07:23.454927"
+        },
+        {
+          "period": "July 2025",
+          "url": "/api/statements/acct_12414349/july_2025.pdf",
+          "generated_date": "2025-07-01T00:07:23.454927"
+        },
+        {
+          "period": "June 2025",
+          "url": "/api/statements/acct_12414349/june_2025.pdf",
+          "generated_date": "2025-06-01T00:07:23.454927"
+        },
+        {
+          "period": "May 2025",
+          "url": "/api/statements/acct_12414349/may_2025.pdf",
+          "generated_date": "2025-05-01T00:07:23.454927"
+        },
+        {
+          "period": "April 2025",
+          "url": "/api/statements/acct_12414349/april_2025.pdf",
+          "generated_date": "2025-04-01T00:07:23.454927"
+        },
+        {
+          "period": "March 2025",
+          "url": "/api/statements/acct_12414349/march_2025.pdf",
+          "generated_date": "2025-03-01T00:07:23.454927"
+        },
+        {
+          "period": "February 2025",
+          "url": "/api/statements/acct_12414349/february_2025.pdf",
+          "generated_date": "2025-02-01T00:07:23.454927"
+        }
+      ],
+      "status": "active",
+      "card_frozen": false
+    },
+    {
+      "id": "acct_51843481",
+      "type": "savings",
+      "nickname": "Emergency Savings",
+      "account_number": "7293",
+      "routing_number": "021000021",
+      "current_balance": 7119.0,
+      "available_balance": 7119.0,
+      "currency": "USD",
+      "opened_date": "2023-12-30T00:07:23.454367",
+      "transactions": [
+        {
+          "id": "txn_252483831",
+          "date": "2025-12-28T00:07:23.454984",
+          "description": "Interest Payment",
+          "amount": 34.0,
+          "running_balance": 7119.0,
+          "category": "Deposit",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_951799143",
+          "date": "2025-12-25T00:07:23.454984",
+          "description": "Deposit",
+          "amount": 1336.0,
+          "running_balance": 8455.0,
+          "category": "Interest",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_424158155",
+          "date": "2025-12-17T00:07:23.454984",
+          "description": "Transfer from Checking",
+          "amount": 468.0,
+          "running_balance": 8923.0,
+          "category": "Interest",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_811540460",
+          "date": "2025-12-16T00:07:23.454984",
+          "description": "Transfer from Checking",
+          "amount": 301.0,
+          "running_balance": 9224.0,
+          "category": "Transfer",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_949008606",
+          "date": "2025-12-13T00:07:23.454984",
+          "description": "Interest Payment",
+          "amount": 43.0,
+          "running_balance": 9267.0,
+          "category": "Deposit",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_755950553",
+          "date": "2025-12-11T00:07:23.454984",
+          "description": "Deposit",
+          "amount": 1260.0,
+          "running_balance": 10527.0,
+          "category": "Deposit",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_611305071",
+          "date": "2025-12-09T00:07:23.454984",
+          "description": "Deposit",
+          "amount": 917.0,
+          "running_balance": 11444.0,
+          "category": "Interest",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_534811307",
+          "date": "2025-12-08T00:07:23.454984",
+          "description": "Deposit",
+          "amount": 1574.0,
+          "running_balance": 13018.0,
+          "category": "Transfer",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_474835399",
+          "date": "2025-12-07T00:07:23.454984",
+          "description": "Transfer from Checking",
+          "amount": 207.0,
+          "running_balance": 13225.0,
+          "category": "Deposit",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_937467096",
+          "date": "2025-12-06T00:07:23.454984",
+          "description": "Deposit",
+          "amount": 507.0,
+          "running_balance": 13732.0,
+          "category": "Deposit",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_621943924",
+          "date": "2025-12-02T00:07:23.454984",
+          "description": "Deposit",
+          "amount": 1104.0,
+          "running_balance": 14836.0,
+          "category": "Deposit",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_676782759",
+          "date": "2025-11-30T00:07:23.454984",
+          "description": "Interest Payment",
+          "amount": 20.0,
+          "running_balance": 14856.0,
+          "category": "Transfer",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_333435121",
+          "date": "2025-11-28T00:07:23.454984",
+          "description": "Transfer from Checking",
+          "amount": 497.0,
+          "running_balance": 15353.0,
+          "category": "Interest",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_251359692",
+          "date": "2025-11-27T00:07:23.454984",
+          "description": "Deposit",
+          "amount": 871.0,
+          "running_balance": 16224.0,
+          "category": "Transfer",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_849645572",
+          "date": "2025-11-21T00:07:23.454984",
+          "description": "Deposit",
+          "amount": 614.0,
+          "running_balance": 16838.0,
+          "category": "Deposit",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_929619466",
+          "date": "2025-11-18T00:07:23.454984",
+          "description": "Transfer from Checking",
+          "amount": 310.0,
+          "running_balance": 17148.0,
+          "category": "Deposit",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_524871176",
+          "date": "2025-11-16T00:07:23.454984",
+          "description": "Deposit",
+          "amount": 1117.0,
+          "running_balance": 18265.0,
+          "category": "Transfer",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_458359200",
+          "date": "2025-11-14T00:07:23.454984",
+          "description": "Interest Payment",
+          "amount": 12.0,
+          "running_balance": 18277.0,
+          "category": "Transfer",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_770819911",
+          "date": "2025-11-13T00:07:23.454984",
+          "description": "Transfer from Checking",
+          "amount": 191.0,
+          "running_balance": 18468.0,
+          "category": "Interest",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_578388594",
+          "date": "2025-11-11T00:07:23.454984",
+          "description": "Deposit",
+          "amount": 1712.0,
+          "running_balance": 20180.0,
+          "category": "Interest",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_109336832",
+          "date": "2025-11-08T00:07:23.454984",
+          "description": "Interest Payment",
+          "amount": 26.0,
+          "running_balance": 20206.0,
+          "category": "Interest",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_367686230",
+          "date": "2025-11-07T00:07:23.454984",
+          "description": "Interest Payment",
+          "amount": 32.0,
+          "running_balance": 20238.0,
+          "category": "Deposit",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_480683793",
+          "date": "2025-11-06T00:07:23.454984",
+          "description": "Interest Payment",
+          "amount": 34.0,
+          "running_balance": 20272.0,
+          "category": "Interest",
+          "type": "credit",
+          "merchant": null
+        },
+        {
+          "id": "txn_524150758",
+          "date": "2025-11-01T00:07:23.454984",
+          "description": "Deposit",
+          "amount": 698.0,
+          "running_balance": 20970.0,
+          "category": "Deposit",
+          "type": "credit",
+          "merchant": null
+        }
+      ],
+      "statements": [
+        {
+          "period": "December 2025",
+          "url": "/api/statements/acct_51843481/december_2025.pdf",
+          "generated_date": "2025-12-01T00:07:23.455112"
+        },
+        {
+          "period": "November 2025",
+          "url": "/api/statements/acct_51843481/november_2025.pdf",
+          "generated_date": "2025-11-01T00:07:23.455112"
+        },
+        {
+          "period": "October 2025",
+          "url": "/api/statements/acct_51843481/october_2025.pdf",
+          "generated_date": "2025-10-01T00:07:23.455112"
+        },
+        {
+          "period": "September 2025",
+          "url": "/api/statements/acct_51843481/september_2025.pdf",
+          "generated_date": "2025-09-01T00:07:23.455112"
+        },
+        {
+          "period": "August 2025",
+          "url": "/api/statements/acct_51843481/august_2025.pdf",
+          "generated_date": "2025-08-01T00:07:23.455112"
+        },
+        {
+          "period": "August 2025",
+          "url": "/api/statements/acct_51843481/august_2025.pdf",
+          "generated_date": "2025-08-01T00:07:23.455112"
+        },
+        {
+          "period": "July 2025",
+          "url": "/api/statements/acct_51843481/july_2025.pdf",
+          "generated_date": "2025-07-01T00:07:23.455112"
+        },
+        {
+          "period": "June 2025",
+          "url": "/api/statements/acct_51843481/june_2025.pdf",
+          "generated_date": "2025-06-01T00:07:23.455112"
+        },
+        {
+          "period": "May 2025",
+          "url": "/api/statements/acct_51843481/may_2025.pdf",
+          "generated_date": "2025-05-01T00:07:23.455112"
+        },
+        {
+          "period": "April 2025",
+          "url": "/api/statements/acct_51843481/april_2025.pdf",
+          "generated_date": "2025-04-01T00:07:23.455112"
+        },
+        {
+          "period": "March 2025",
+          "url": "/api/statements/acct_51843481/march_2025.pdf",
+          "generated_date": "2025-03-01T00:07:23.455112"
+        },
+        {
+          "period": "February 2025",
+          "url": "/api/statements/acct_51843481/february_2025.pdf",
+          "generated_date": "2025-02-01T00:07:23.455112"
+        }
+      ],
+      "status": "active",
+      "card_frozen": false
+    }
+  ],
+  "credit_cards": [
+    {
+      "id": "card_30007676",
+      "card_number": "4532",
+      "cardholder_name": "JOHN DOE",
+      "expiration_date": "09/26",
+      "current_balance": 19921.0,
+      "available_credit": -9921.0,
+      "credit_limit": 10000,
+      "payment_due_date": "2026-01-13T00:07:23.454367",
+      "minimum_payment": 398.42,
+      "statements": [
+        {
+          "period": "December 2025",
+          "url": "/api/statements/card_30007676/december_2025.pdf",
+          "generated_date": "2025-12-01T00:07:23.455369"
+        },
+        {
+          "period": "November 2025",
+          "url": "/api/statements/card_30007676/november_2025.pdf",
+          "generated_date": "2025-11-01T00:07:23.455369"
+        },
+        {
+          "period": "October 2025",
+          "url": "/api/statements/card_30007676/october_2025.pdf",
+          "generated_date": "2025-10-01T00:07:23.455369"
+        },
+        {
+          "period": "September 2025",
+          "url": "/api/statements/card_30007676/september_2025.pdf",
+          "generated_date": "2025-09-01T00:07:23.455369"
+        },
+        {
+          "period": "August 2025",
+          "url": "/api/statements/card_30007676/august_2025.pdf",
+          "generated_date": "2025-08-01T00:07:23.455369"
+        },
+        {
+          "period": "August 2025",
+          "url": "/api/statements/card_30007676/august_2025.pdf",
+          "generated_date": "2025-08-01T00:07:23.455369"
+        },
+        {
+          "period": "July 2025",
+          "url": "/api/statements/card_30007676/july_2025.pdf",
+          "generated_date": "2025-07-01T00:07:23.455369"
+        },
+        {
+          "period": "June 2025",
+          "url": "/api/statements/card_30007676/june_2025.pdf",
+          "generated_date": "2025-06-01T00:07:23.455369"
+        },
+        {
+          "period": "May 2025",
+          "url": "/api/statements/card_30007676/may_2025.pdf",
+          "generated_date": "2025-05-01T00:07:23.455369"
+        },
+        {
+          "period": "April 2025",
+          "url": "/api/statements/card_30007676/april_2025.pdf",
+          "generated_date": "2025-04-01T00:07:23.455369"
+        },
+        {
+          "period": "March 2025",
+          "url": "/api/statements/card_30007676/march_2025.pdf",
+          "generated_date": "2025-03-01T00:07:23.455369"
+        },
+        {
+          "period": "February 2025",
+          "url": "/api/statements/card_30007676/february_2025.pdf",
+          "generated_date": "2025-02-01T00:07:23.455369"
+        }
+      ],
+      "transactions": [
+        {
+          "id": "txn_629938800",
+          "date": "2025-12-28T00:07:23.455153",
+          "description": "Department Store",
+          "amount": 208.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Department Store"
+        },
+        {
+          "id": "txn_466376043",
+          "date": "2025-12-28T00:07:23.455153",
+          "description": "DoorDash",
+          "amount": 259.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "DoorDash"
+        },
+        {
+          "id": "txn_891920381",
+          "date": "2025-12-26T00:07:23.455153",
+          "description": "Marriott Hotels",
+          "amount": 164.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Marriott Hotels"
+        },
+        {
+          "id": "txn_719028942",
+          "date": "2025-12-25T00:07:23.455153",
+          "description": "Gas Station",
+          "amount": 338.0,
+          "category": "Electronics",
+          "type": "debit",
+          "merchant": "Gas Station"
+        },
+        {
+          "id": "txn_741628442",
+          "date": "2025-12-25T00:07:23.455153",
+          "description": "Grocery Store",
+          "amount": 322.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Grocery Store"
+        },
+        {
+          "id": "txn_904233557",
+          "date": "2025-12-23T00:07:23.455153",
+          "description": "Best Buy",
+          "amount": 217.0,
+          "category": "Transportation",
+          "type": "debit",
+          "merchant": "Best Buy"
+        },
+        {
+          "id": "txn_896042253",
+          "date": "2025-12-23T00:07:23.455153",
+          "description": "Uber Eats",
+          "amount": 281.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Uber Eats"
+        },
+        {
+          "id": "txn_928312419",
+          "date": "2025-12-22T00:07:23.455153",
+          "description": "Uber Eats",
+          "amount": 68.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Uber Eats"
+        },
+        {
+          "id": "txn_860730976",
+          "date": "2025-12-21T00:07:23.455153",
+          "description": "Amazon Prime",
+          "amount": 496.0,
+          "category": "Electronics",
+          "type": "debit",
+          "merchant": "Amazon Prime"
+        },
+        {
+          "id": "txn_745956499",
+          "date": "2025-12-19T00:07:23.455153",
+          "description": "Amazon Prime",
+          "amount": 145.0,
+          "category": "Transportation",
+          "type": "debit",
+          "merchant": "Amazon Prime"
+        },
+        {
+          "id": "txn_781655752",
+          "date": "2025-12-18T00:07:23.455153",
+          "description": "Uber Eats",
+          "amount": 333.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Uber Eats"
+        },
+        {
+          "id": "txn_743230033",
+          "date": "2025-12-18T00:07:23.455153",
+          "description": "Spotify",
+          "amount": 64.0,
+          "category": "Services",
+          "type": "debit",
+          "merchant": "Spotify"
+        },
+        {
+          "id": "txn_864274490",
+          "date": "2025-12-17T00:07:23.455153",
+          "description": "Delta Airlines",
+          "amount": 485.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Delta Airlines"
+        },
+        {
+          "id": "txn_700308795",
+          "date": "2025-12-16T00:07:23.455153",
+          "description": "Gas Station",
+          "amount": 40.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Gas Station"
+        },
+        {
+          "id": "txn_251528485",
+          "date": "2025-12-15T00:07:23.455153",
+          "description": "Amazon Prime",
+          "amount": 158.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Amazon Prime"
+        },
+        {
+          "id": "txn_364370441",
+          "date": "2025-12-14T00:07:23.455153",
+          "description": "Netflix",
+          "amount": 178.0,
+          "category": "Transportation",
+          "type": "debit",
+          "merchant": "Netflix"
+        },
+        {
+          "id": "txn_303780340",
+          "date": "2025-12-14T00:07:23.455153",
+          "description": "Uber Eats",
+          "amount": 142.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Uber Eats"
+        },
+        {
+          "id": "txn_498530440",
+          "date": "2025-12-13T00:07:23.455153",
+          "description": "Uber Eats",
+          "amount": 98.0,
+          "category": "Services",
+          "type": "debit",
+          "merchant": "Uber Eats"
+        },
+        {
+          "id": "txn_831723162",
+          "date": "2025-12-13T00:07:23.455153",
+          "description": "Amazon Prime",
+          "amount": 396.0,
+          "category": "Services",
+          "type": "debit",
+          "merchant": "Amazon Prime"
+        },
+        {
+          "id": "txn_461521239",
+          "date": "2025-12-12T00:07:23.455153",
+          "description": "Amazon Prime",
+          "amount": 86.0,
+          "category": "Electronics",
+          "type": "debit",
+          "merchant": "Amazon Prime"
+        },
+        {
+          "id": "txn_243378515",
+          "date": "2025-12-11T00:07:23.455153",
+          "description": "Delta Airlines",
+          "amount": 51.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Delta Airlines"
+        },
+        {
+          "id": "txn_909157002",
+          "date": "2025-12-09T00:07:23.455153",
+          "description": "Gas Station",
+          "amount": 216.0,
+          "category": "Transportation",
+          "type": "debit",
+          "merchant": "Gas Station"
+        },
+        {
+          "id": "txn_625878852",
+          "date": "2025-12-09T00:07:23.455153",
+          "description": "Gas Station",
+          "amount": 297.0,
+          "category": "Services",
+          "type": "debit",
+          "merchant": "Gas Station"
+        },
+        {
+          "id": "txn_740749162",
+          "date": "2025-12-08T00:07:23.455153",
+          "description": "Best Buy",
+          "amount": 414.0,
+          "category": "Services",
+          "type": "debit",
+          "merchant": "Best Buy"
+        },
+        {
+          "id": "txn_560874611",
+          "date": "2025-12-07T00:07:23.455153",
+          "description": "Online Retailer",
+          "amount": 295.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Online Retailer"
+        },
+        {
+          "id": "txn_172206970",
+          "date": "2025-12-06T00:07:23.455153",
+          "description": "Apple Store",
+          "amount": 285.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Apple Store"
+        },
+        {
+          "id": "txn_336579902",
+          "date": "2025-12-05T00:07:23.455153",
+          "description": "Online Retailer",
+          "amount": 265.0,
+          "category": "Travel",
+          "type": "debit",
+          "merchant": "Online Retailer"
+        },
+        {
+          "id": "txn_722748572",
+          "date": "2025-12-04T00:07:23.455153",
+          "description": "Online Retailer",
+          "amount": 490.0,
+          "category": "Transportation",
+          "type": "debit",
+          "merchant": "Online Retailer"
+        },
+        {
+          "id": "txn_408300268",
+          "date": "2025-12-04T00:07:23.455153",
+          "description": "Best Buy",
+          "amount": 484.0,
+          "category": "Travel",
+          "type": "debit",
+          "merchant": "Best Buy"
+        },
+        {
+          "id": "txn_664464878",
+          "date": "2025-12-03T00:07:23.455153",
+          "description": "Department Store",
+          "amount": 474.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Department Store"
+        },
+        {
+          "id": "txn_919528275",
+          "date": "2025-12-03T00:07:23.455153",
+          "description": "Online Retailer",
+          "amount": 92.0,
+          "category": "Travel",
+          "type": "debit",
+          "merchant": "Online Retailer"
+        },
+        {
+          "id": "txn_678779304",
+          "date": "2025-12-02T00:07:23.455153",
+          "description": "Gas Station",
+          "amount": 486.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Gas Station"
+        },
+        {
+          "id": "txn_197402804",
+          "date": "2025-12-02T00:07:23.455153",
+          "description": "Online Retailer",
+          "amount": 250.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Online Retailer"
+        },
+        {
+          "id": "txn_234324751",
+          "date": "2025-11-28T00:07:23.455153",
+          "description": "DoorDash",
+          "amount": 371.0,
+          "category": "Transportation",
+          "type": "debit",
+          "merchant": "DoorDash"
+        },
+        {
+          "id": "txn_791849754",
+          "date": "2025-11-27T00:07:23.455153",
+          "description": "Gas Station",
+          "amount": 435.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Gas Station"
+        },
+        {
+          "id": "txn_354333009",
+          "date": "2025-11-27T00:07:23.455153",
+          "description": "DoorDash",
+          "amount": 460.0,
+          "category": "Travel",
+          "type": "debit",
+          "merchant": "DoorDash"
+        },
+        {
+          "id": "txn_375658066",
+          "date": "2025-11-26T00:07:23.455153",
+          "description": "Apple Store",
+          "amount": 413.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Apple Store"
+        },
+        {
+          "id": "txn_204376876",
+          "date": "2025-11-26T00:07:23.455153",
+          "description": "Delta Airlines",
+          "amount": 207.0,
+          "category": "Electronics",
+          "type": "debit",
+          "merchant": "Delta Airlines"
+        },
+        {
+          "id": "txn_749263685",
+          "date": "2025-11-24T00:07:23.455153",
+          "description": "Gas Station",
+          "amount": 265.0,
+          "category": "Electronics",
+          "type": "debit",
+          "merchant": "Gas Station"
+        },
+        {
+          "id": "txn_694590916",
+          "date": "2025-11-24T00:07:23.455153",
+          "description": "DoorDash",
+          "amount": 201.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "DoorDash"
+        },
+        {
+          "id": "txn_314114265",
+          "date": "2025-11-23T00:07:23.455153",
+          "description": "DoorDash",
+          "amount": 288.0,
+          "category": "Travel",
+          "type": "debit",
+          "merchant": "DoorDash"
+        },
+        {
+          "id": "txn_586927819",
+          "date": "2025-11-23T00:07:23.455153",
+          "description": "Netflix",
+          "amount": 403.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Netflix"
+        },
+        {
+          "id": "txn_933688038",
+          "date": "2025-11-21T00:07:23.455153",
+          "description": "Online Retailer",
+          "amount": 489.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Online Retailer"
+        },
+        {
+          "id": "txn_340488338",
+          "date": "2025-11-20T00:07:23.455153",
+          "description": "DoorDash",
+          "amount": 346.0,
+          "category": "Electronics",
+          "type": "debit",
+          "merchant": "DoorDash"
+        },
+        {
+          "id": "txn_866311979",
+          "date": "2025-11-16T00:07:23.455153",
+          "description": "Department Store",
+          "amount": 443.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Department Store"
+        },
+        {
+          "id": "txn_131615873",
+          "date": "2025-11-16T00:07:23.455153",
+          "description": "Apple Store",
+          "amount": 467.0,
+          "category": "Services",
+          "type": "debit",
+          "merchant": "Apple Store"
+        },
+        {
+          "id": "txn_660175063",
+          "date": "2025-11-15T00:07:23.455153",
+          "description": "Delta Airlines",
+          "amount": 457.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Delta Airlines"
+        },
+        {
+          "id": "txn_560608421",
+          "date": "2025-11-15T00:07:23.455153",
+          "description": "Apple Store",
+          "amount": 67.0,
+          "category": "Travel",
+          "type": "debit",
+          "merchant": "Apple Store"
+        },
+        {
+          "id": "txn_703024927",
+          "date": "2025-11-13T00:07:23.455153",
+          "description": "Department Store",
+          "amount": 252.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Department Store"
+        },
+        {
+          "id": "txn_846342266",
+          "date": "2025-11-13T00:07:23.455153",
+          "description": "Department Store",
+          "amount": 388.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Department Store"
+        },
+        {
+          "id": "txn_252283198",
+          "date": "2025-11-09T00:07:23.455153",
+          "description": "Grocery Store",
+          "amount": 351.0,
+          "category": "Transportation",
+          "type": "debit",
+          "merchant": "Grocery Store"
+        },
+        {
+          "id": "txn_926475878",
+          "date": "2025-11-09T00:07:23.455153",
+          "description": "DoorDash",
+          "amount": 330.0,
+          "category": "Transportation",
+          "type": "debit",
+          "merchant": "DoorDash"
+        },
+        {
+          "id": "txn_796132808",
+          "date": "2025-11-08T00:07:23.455153",
+          "description": "Uber Eats",
+          "amount": 41.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Uber Eats"
+        },
+        {
+          "id": "txn_994682342",
+          "date": "2025-11-08T00:07:23.455153",
+          "description": "Netflix",
+          "amount": 315.0,
+          "category": "Shopping",
+          "type": "debit",
+          "merchant": "Netflix"
+        },
+        {
+          "id": "txn_726334808",
+          "date": "2025-11-07T00:07:23.455153",
+          "description": "Department Store",
+          "amount": 334.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Department Store"
+        },
+        {
+          "id": "txn_680886674",
+          "date": "2025-11-07T00:07:23.455153",
+          "description": "Department Store",
+          "amount": 224.0,
+          "category": "Transportation",
+          "type": "debit",
+          "merchant": "Department Store"
+        },
+        {
+          "id": "txn_980841547",
+          "date": "2025-11-06T00:07:23.455153",
+          "description": "Marriott Hotels",
+          "amount": 145.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Marriott Hotels"
+        },
+        {
+          "id": "txn_563864542",
+          "date": "2025-11-06T00:07:23.455153",
+          "description": "Grocery Store",
+          "amount": 467.0,
+          "category": "Services",
+          "type": "debit",
+          "merchant": "Grocery Store"
+        },
+        {
+          "id": "txn_341142875",
+          "date": "2025-11-04T00:07:23.455153",
+          "description": "Gas Station",
+          "amount": 377.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "Gas Station"
+        },
+        {
+          "id": "txn_775269357",
+          "date": "2025-11-03T00:07:23.455153",
+          "description": "DoorDash",
+          "amount": 20.0,
+          "category": "Entertainment",
+          "type": "debit",
+          "merchant": "DoorDash"
+        },
+        {
+          "id": "txn_859739949",
+          "date": "2025-11-02T00:07:23.455153",
+          "description": "DoorDash",
+          "amount": 87.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "DoorDash"
+        },
+        {
+          "id": "txn_756999663",
+          "date": "2025-11-02T00:07:23.455153",
+          "description": "Best Buy",
+          "amount": 494.0,
+          "category": "Food & Dining",
+          "type": "debit",
+          "merchant": "Best Buy"
+        },
+        {
+          "id": "txn_653092678",
+          "date": "2025-10-31T00:07:23.455153",
+          "description": "Marriott Hotels",
+          "amount": 275.0,
+          "category": "Electronics",
+          "type": "debit",
+          "merchant": "Marriott Hotels"
+        }
+      ],
+      "status": "active",
+      "card_frozen": false
+    }
+  ],
+  "loans": [
+    {
+      "id": "loan_755840",
+      "type": "auto",
+      "loan_number": "AL847291",
+      "original_amount": 35000,
+      "current_balance": 28450.0,
+      "interest_rate": 4.5,
+      "monthly_payment": 658.5,
+      "due_date": "2026-01-03T00:07:23.454367",
+      "start_date": "2024-12-29T00:07:23.454367",
+      "maturity_date": "2029-12-28T00:07:23.454367",
+      "payment_schedule": [],
+      "payment_history": [],
+      "status": "active"
+    }
+  ],
+  "investments": {
+    "brokerage": {
+      "account_number": "BR928374",
+      "cash_balance": 2530.45,
+      "total_value": 48530.45,
+      "holdings": [
+        {
+          "symbol": "AAPL",
+          "name": "Apple Inc.",
+          "quantity": 50,
+          "average_cost": 145.3,
+          "current_price": 178.25,
+          "current_value": 8912.5,
+          "gain_loss": 1647.5,
+          "gain_loss_percent": 22.7
+        },
+        {
+          "symbol": "MSFT",
+          "name": "Microsoft Corporation",
+          "quantity": 30,
+          "average_cost": 285.4,
+          "current_price": 378.91,
+          "current_value": 11367.3,
+          "gain_loss": 2805.3,
+          "gain_loss_percent": 32.7
+        },
+        {
+          "symbol": "GOOGL",
+          "name": "Alphabet Inc.",
+          "quantity": 25,
+          "average_cost": 118.2,
+          "current_price": 141.8,
+          "current_value": 3545.0,
+          "gain_loss": 590.0,
+          "gain_loss_percent": 19.9
+        }
+      ],
+      "trades": []
+    },
+    "retirement": [
+      {
+        "account_type": "401k",
+        "account_number": "RT401847",
+        "cash_balance": 1250.0,
+        "total_value": 32550.0,
+        "holdings": [
+          {
+            "symbol": "VFIAX",
+            "name": "Vanguard 500 Index Fund",
+            "quantity": 85,
+            "average_cost": 325.4,
+            "current_price": 378.2,
+            "current_value": 32147.0,
+            "gain_loss": 4486.0,
+            "gain_loss_percent": 16.2
+          }
+        ],
+        "trades": []
+      }
+    ]
+  },
+  "bill_pay": {
+    "payees": [
+      {
+        "id": "payee_1",
+        "name": "Electric Company",
+        "account_number": "123456789",
+        "address": "123 Power St, Energy City, EC 12345",
+        "nickname": "Electric Bill"
+      },
+      {
+        "id": "payee_2",
+        "name": "Landlord",
+        "account_number": "987654321",
+        "address": "456 Rental Ave, Apt 7B, Town, ST 54321",
+        "nickname": "Rent"
+      },
+      {
+        "id": "payee_3",
+        "name": "Cable Provider",
+        "account_number": "555555555",
+        "address": "789 Media Blvd, Television City, TC 13579",
+        "nickname": "Internet & Cable"
+      }
+    ],
+    "scheduled_payments": [],
+    "payment_history": []
+  },
+  "transfers": {
+    "history": [],
+    "scheduled": []
+  },
+  "user_profile": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "(555) 123-4567",
+    "address": {
+      "street": "123 Main Street",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10001"
+    },
+    "communication_preferences": {
+      "paperless": true,
+      "email_notifications": true,
+      "sms_notifications": false
+    },
+    "security": {
+      "recent_logins": [
+        {
+          "timestamp": "2025-12-29T00:07:23.454367",
+          "ip_address": "192.168.1.100",
+          "device": "Chrome on Windows",
+          "location": "New York, NY"
+        },
+        {
+          "timestamp": "2025-12-28T00:07:23.454367",
+          "ip_address": "192.168.1.100",
+          "device": "Chrome on Windows",
+          "location": "New York, NY"
+        }
+      ]
+    }
+  }
+}

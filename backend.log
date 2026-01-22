@@ -1,0 +1,23 @@
+warning: `VIRTUAL_ENV=/home/adlsdztony/codes/web-v2/basesite/backend/.venv` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+Uninstalled 5 packages in 5ms
+Installed 5 packages in 5ms
+INFO:     Will watch for changes in these directories: ['/home/adlsdztony/codes/web-v2/chase_web/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [2197591] using WatchFiles
+INFO:     Started server process [2197593]
+INFO:     Waiting for application startup.
+StreamableHTTP session manager started
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50126 - "OPTIONS /api/state HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50134 - "OPTIONS /api/state HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50140 - "GET /api/state HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50140 - "GET /api/state HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50150 - "PATCH /api/state HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50150 - "PATCH /api/state HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50164 - "PATCH /api/state HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+StreamableHTTP session manager shutting down
+INFO:     Application shutdown complete.
+INFO:     Finished server process [2197593]
+INFO:     Stopping reloader process [2197591]

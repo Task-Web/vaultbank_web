@@ -1,0 +1,2060 @@
+[
+  {
+    "category": "functional",
+    "description": "Application starts and loads without errors",
+    "steps": [
+      "Step 1: Navigate to application URL",
+      "Step 2: Verify page loads",
+      "Step 3: Check console for no errors"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User cookie is set on first visit",
+    "steps": [
+      "Step 1: Navigate to application",
+      "Step 2: Check browser cookies",
+      "Step 3: Verify user_id cookie exists"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Initial state data loads correctly",
+    "steps": [
+      "Step 1: Load application",
+      "Step 2: Call GET /api/state",
+      "Step 3: Verify state structure has accounts, transactions, etc."
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Sample data initializes on first load (2-3 accounts)",
+    "steps": [
+      "Step 1: Open browser in incognito mode",
+      "Step 2: Navigate to application",
+      "Step 3: Check state for 2-3 sample accounts",
+      "Step 4: Verify accounts have 30-90 days of transactions"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Sidebar navigation displays all main sections",
+    "steps": [
+      "Step 1: Load application",
+      "Step 2: Check left sidebar",
+      "Step 3: Verify: Accounts, Transfers, Bill Pay, Credit Cards, Loans, Investments, Statements & Documents, Profile & Settings links"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Top navigation bar contains account selector dropdown",
+    "steps": [
+      "Step 1: Load dashboard",
+      "Step 2: Locate top navigation bar",
+      "Step 3: Click account selector dropdown",
+      "Step 4: Verify list of accounts appears"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Top navigation has search box for transactions",
+    "steps": [
+      "Step 1: Load dashboard",
+      "Step 2: Locate search box in top nav",
+      "Step 3: Verify search input is present"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Quick action buttons display in top navigation",
+    "steps": [
+      "Step 1: Load dashboard",
+      "Step 2: Check top navigation",
+      "Step 3: Verify 'Transfer' and 'Pay Bills' quick action buttons"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User profile menu is accessible",
+    "steps": [
+      "Step 1: Load dashboard",
+      "Step 2: Click user profile menu",
+      "Step 3: Verify menu appears with options"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Notifications icon displays in top navigation",
+    "steps": [
+      "Step 1: Load dashboard",
+      "Step 2: Locate notifications icon",
+      "Step 3: Verify icon is visible"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Dashboard displays total balance across all accounts",
+    "steps": [
+      "Step 1: Navigate to dashboard",
+      "Step 2: View hero section",
+      "Step 3: Verify total balance is sum of all account balances"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Dashboard shows account cards for all account types",
+    "steps": [
+      "Step 1: Navigate to dashboard",
+      "Step 2: View account cards grid",
+      "Step 3: Verify cards for checking, savings, and other account types"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Account cards display nickname and balance",
+    "steps": [
+      "Step 1: Navigate to dashboard",
+      "Step 2: View account card",
+      "Step 3: Verify account nickname is visible",
+      "Step 4: Verify current balance is visible"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Account cards display account number (last 4 digits)",
+    "steps": [
+      "Step 1: Navigate to dashboard",
+      "Step 2: View account card",
+      "Step 3: Verify account number shows last 4 digits"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Dashboard displays recent transactions across all accounts",
+    "steps": [
+      "Step 1: Navigate to dashboard",
+      "Step 2: Scroll to recent transactions section",
+      "Step 3: Verify transactions from multiple accounts appear"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Dashboard shows upcoming bills",
+    "steps": [
+      "Step 1: Navigate to dashboard",
+      "Step 2: View upcoming bills section",
+      "Step 3: Verify scheduled bills display with due dates"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Dashboard shows scheduled transfers",
+    "steps": [
+      "Step 1: Navigate to dashboard",
+      "Step 2: View scheduled transfers section",
+      "Step 3: Verify upcoming scheduled transfers display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Clicking account card navigates to account detail page",
+    "steps": [
+      "Step 1: Navigate to dashboard",
+      "Step 2: Click an account card",
+      "Step 3: Verify navigation to /accounts/:id"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Sidebar 'Accounts' expands to show sub-menu for each account",
+    "steps": [
+      "Step 1: Navigate to dashboard",
+      "Step 2: Click 'Accounts' in sidebar",
+      "Step 3: Verify sub-menu appears with individual accounts"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Sidebar sub-menu links navigate to correct account pages",
+    "steps": [
+      "Step 1: Expand Accounts sub-menu",
+      "Step 2: Click on specific account",
+      "Step 3: Verify navigation to correct /accounts/:id"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Account detail page displays account header with balance",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id",
+      "Step 2: View page header",
+      "Step 3: Verify account nickname and balance display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Account detail page shows account number and routing number",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id",
+      "Step 2: View account details",
+      "Step 3: Verify full account number (masked) and routing number display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Account detail page has action buttons (Transfer, Pay, Freeze)",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id",
+      "Step 2: Check action buttons",
+      "Step 3: Verify Transfer, Pay (if applicable), Freeze buttons"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Account detail page has tabs: Transactions, Details, Statements",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id",
+      "Step 2: View tab navigation",
+      "Step 3: Verify tabs: Transactions, Details, Statements"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transactions tab displays all transactions for the account",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id",
+      "Step 2: Click Transactions tab",
+      "Step 3: Verify table shows transactions with date, description, amount"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transaction details include running balance",
+    "steps": [
+      "Step 1: View transactions table",
+      "Step 2: Check transaction row",
+      "Step 3: Verify running balance column displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transactions can be searched by amount",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id Transactions tab",
+      "Step 2: Enter amount in search box",
+      "Step 3: Verify results filter by amount"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transactions can be searched by description",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id Transactions tab",
+      "Step 2: Enter merchant/description in search",
+      "Step 3: Verify results filter by description"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transactions can be filtered by date range",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id Transactions tab",
+      "Step 2: Select date range",
+      "Step 3: Verify only transactions in range display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transactions can be filtered by category",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id Transactions tab",
+      "Step 2: Select category filter",
+      "Step 3: Verify only transactions in category display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transactions can be filtered by type (debit/credit/pending)",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id Transactions tab",
+      "Step 2: Select transaction type filter",
+      "Step 3: Verify only transactions of that type display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transaction history can be exported to CSV",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id Transactions tab",
+      "Step 2: Click 'Export to CSV' button",
+      "Step 3: Verify CSV file downloads with transaction data"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Details tab shows account information",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id",
+      "Step 2: Click Details tab",
+      "Step 3: Verify account type, opened date, status display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Statements tab lists available statements",
+    "steps": [
+      "Step 1: Navigate to /accounts/:id",
+      "Step 2: Click Statements tab",
+      "Step 3: Verify list of monthly statements (12+ months)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Statements can be downloaded (PDF URLs)",
+    "steps": [
+      "Step 1: Navigate to Statements tab",
+      "Step 2: Click download for a statement",
+      "Step 3: Verify PDF downloads or opens"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer page loads from sidebar navigation",
+    "steps": [
+      "Step 1: Click 'Transfers' in sidebar",
+      "Step 2: Verify navigation to /transfers",
+      "Step 3: Verify transfer form displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer form has 'From' account dropdown",
+    "steps": [
+      "Step 1: Navigate to /transfers",
+      "Step 2: Locate 'From' field",
+      "Step 3: Verify dropdown shows user's accounts"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer form has 'To' account selection",
+    "steps": [
+      "Step 1: Navigate to /transfers",
+      "Step 2: Locate 'To' field",
+      "Step 3: Verify option to select internal account"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer form has amount input field",
+    "steps": [
+      "Step 1: Navigate to /transfers",
+      "Step 2: Locate amount field",
+      "Step 3: Verify currency input accepts numbers"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer form validates amount is positive",
+    "steps": [
+      "Step 1: Enter negative amount",
+      "Step 2: Attempt to submit",
+      "Step 3: Verify validation error displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer form validates sufficient funds",
+    "steps": [
+      "Step 1: Select from account",
+      "Step 2: Enter amount greater than balance",
+      "Step 3: Attempt to submit",
+      "Step 4: Verify insufficient funds error"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer form has optional date field for scheduled transfers",
+    "steps": [
+      "Step 1: Navigate to /transfers",
+      "Step 2: Locate date field",
+      "Step 3: Verify date picker defaults to today"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer form has optional memo field",
+    "steps": [
+      "Step 1: Navigate to /transfers",
+      "Step 2: Locate memo field",
+      "Step 3: Verify text input accepts memo"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer review page shows all details before confirmation",
+    "steps": [
+      "Step 1: Fill transfer form",
+      "Step 2: Click Continue/Review",
+      "Step 3: Verify from account, to account, amount, date display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer confirmation modal displays before executing",
+    "steps": [
+      "Step 1: Complete transfer review",
+      "Step 2: Click Submit/Transfer",
+      "Step 3: Verify confirmation modal appears"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer success page shows reference number",
+    "steps": [
+      "Step 1: Confirm transfer",
+      "Step 2: View success page",
+      "Step 3: Verify reference number displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Executing transfer updates account balances",
+    "steps": [
+      "Step 1: Note 'from' and 'to' account balances before transfer",
+      "Step 2: Execute transfer",
+      "Step 3: Refresh and verify balances updated correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Executing transfer creates transaction records",
+    "steps": [
+      "Step 1: Execute transfer",
+      "Step 2: Navigate to from account transactions",
+      "Step 3: Verify debit transaction appears",
+      "Step 4: Navigate to to account transactions",
+      "Step 5: Verify credit transaction appears"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "External transfer option is available",
+    "steps": [
+      "Step 1: Navigate to /transfers",
+      "Step 2: Select external transfer option",
+      "Step 3: Verify form shows external account fields"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "External transfer form accepts account number and routing number",
+    "steps": [
+      "Step 1: Select external transfer",
+      "Step 2: Locate external account fields",
+      "Step 3: Verify account number and routing number inputs"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Scheduled transfers can be set up with recurrence",
+    "steps": [
+      "Step 1: Navigate to /transfers",
+      "Step 2: Select recurring option",
+      "Step 3: Verify frequency dropdown (weekly, monthly, yearly)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Scheduled transfers section shows upcoming recurring transfers",
+    "steps": [
+      "Step 1: Navigate to /transfers",
+      "Step 2: Click 'Scheduled' tab",
+      "Step 3: Verify list of recurring transfers"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Scheduled transfers can be edited",
+    "steps": [
+      "Step 1: View scheduled transfers",
+      "Step 2: Click edit on a scheduled transfer",
+      "Step 3: Verify edit form appears"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Scheduled transfers can be cancelled",
+    "steps": [
+      "Step 1: View scheduled transfers",
+      "Step 2: Click cancel on a scheduled transfer",
+      "Step 3: Confirm cancellation",
+      "Step 4: Verify transfer removed from scheduled list"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer history displays past transfers",
+    "steps": [
+      "Step 1: Navigate to /transfers",
+      "Step 2: Click 'History' tab",
+      "Step 3: Verify list of completed transfers"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer history shows status (pending, completed, failed)",
+    "steps": [
+      "Step 1: View transfer history",
+      "Step 2: Check transfer status",
+      "Step 3: Verify status displays correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Convenience API POST /api/transfer executes transfer",
+    "steps": [
+      "Step 1: Call POST /api/transfer with from_account, to_account, amount",
+      "Step 2: Verify response includes reference number",
+      "Step 3: Check state to confirm balances updated"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Convenience API /api/transfer validates insufficient funds",
+    "steps": [
+      "Step 1: Call POST /api/transfer with amount exceeding balance",
+      "Step 2: Verify response returns error",
+      "Step 3: Verify error message indicates insufficient funds"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Bill Pay page loads from sidebar",
+    "steps": [
+      "Step 1: Click 'Bill Pay' in sidebar",
+      "Step 2: Verify navigation to /bill-pay",
+      "Step 3: Verify bill pay interface displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Bill Pay has tabs: Pay Bills, Payees, History, Scheduled",
+    "steps": [
+      "Step 1: Navigate to /bill-pay",
+      "Step 2: View tab navigation",
+      "Step 3: Verify all four tabs exist"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Pay Bills tab shows upcoming bills",
+    "steps": [
+      "Step 1: Navigate to /bill-pay",
+      "Step 2: View Pay Bills tab",
+      "Step 3: Verify list of upcoming scheduled payments"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "New payee can be added",
+    "steps": [
+      "Step 1: Navigate to Payees tab",
+      "Step 2: Click 'Add Payee'",
+      "Step 3: Fill in name, account number, address",
+      "Step 4: Submit",
+      "Step 5: Verify payee appears in list"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Payee form validates required fields",
+    "steps": [
+      "Step 1: Navigate to Add Payee form",
+      "Step 2: Submit with empty fields",
+      "Step 3: Verify validation errors"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Existing payees can be edited",
+    "steps": [
+      "Step 1: Navigate to Payees tab",
+      "Step 2: Click edit on a payee",
+      "Step 3: Update information",
+      "Step 4: Save",
+      "Step 5: Verify changes saved"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Payees can be deleted",
+    "steps": [
+      "Step 1: Navigate to Payees tab",
+      "Step 2: Click delete on a payee",
+      "Step 3: Confirm deletion",
+      "Step 4: Verify payee removed"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "One-time bill payment can be made",
+    "steps": [
+      "Step 1: Navigate to Pay Bills tab",
+      "Step 2: Select payee",
+      "Step 3: Enter amount and date",
+      "Step 4: Submit",
+      "Step 5: Verify payment confirmation"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Bill payment has confirmation review step",
+    "steps": [
+      "Step 1: Fill payment form",
+      "Step 2: Click Continue",
+      "Step 3: Verify review page shows payee, amount, date"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Bill payment confirmation shows reference number",
+    "steps": [
+      "Step 1: Complete bill payment",
+      "Step 2: View confirmation page",
+      "Step 3: Verify reference number displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Bill payment deducts from account balance",
+    "steps": [
+      "Step 1: Note account balance",
+      "Step 2: Make bill payment",
+      "Step 3: Refresh account",
+      "Step 4: Verify balance decreased"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Recurring bill payments can be set up",
+    "steps": [
+      "Step 1: Navigate to Pay Bills tab",
+      "Step 2: Select recurring option",
+      "Step 3: Choose frequency (weekly, monthly, yearly)",
+      "Step 4: Submit",
+      "Step 5: Verify payment appears in Scheduled tab"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Scheduled payments can be viewed",
+    "steps": [
+      "Step 1: Navigate to Scheduled tab",
+      "Step 2: Verify list of upcoming recurring payments",
+      "Step 3: Verify next payment date shows"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Scheduled payments can be cancelled",
+    "steps": [
+      "Step 1: Navigate to Scheduled tab",
+      "Step 2: Click cancel on a payment",
+      "Step 3: Confirm cancellation",
+      "Step 4: Verify payment removed from scheduled list"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Payment history shows past bill payments",
+    "steps": [
+      "Step 1: Navigate to History tab",
+      "Step 2: Verify list of past payments",
+      "Step 3: Verify status shows (completed, pending)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Delivery date estimation displays for bill payments",
+    "steps": [
+      "Step 1: Create bill payment",
+      "Step 2: View payment details",
+      "Step 3: Verify estimated delivery date displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Convenience API POST /api/payment processes bill payment",
+    "steps": [
+      "Step 1: Call POST /api/payment with payee_id, amount",
+      "Step 2: Verify response includes reference number",
+      "Step 3: Check state to confirm balance updated"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Mobile deposit page loads",
+    "steps": [
+      "Step 1: Navigate to mobile deposit (from quick actions or accounts)",
+      "Step 2: Verify deposit form displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Mobile deposit form has check image upload (front)",
+    "steps": [
+      "Step 1: Navigate to mobile deposit",
+      "Step 2: Locate front check image upload",
+      "Step 3: Verify file input accepts images"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Mobile deposit form has check image upload (back)",
+    "steps": [
+      "Step 1: Navigate to mobile deposit",
+      "Step 2: Locate back check image upload",
+      "Step 3: Verify file input accepts images"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Mobile deposit form requires check amount",
+    "steps": [
+      "Step 1: Navigate to mobile deposit",
+      "Step 2: Locate amount field",
+      "Step 3: Verify numeric input"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Mobile deposit form has account selection",
+    "steps": [
+      "Step 1: Navigate to mobile deposit",
+      "Step 2: Locate account dropdown",
+      "Step 3: Verify shows eligible accounts"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Mobile deposit validates image uploads",
+    "steps": [
+      "Step 1: Try to submit without check images",
+      "Step 2: Verify validation error"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Mobile deposit has confirmation review",
+    "steps": [
+      "Step 1: Fill deposit form",
+      "Step 2: Click Continue",
+      "Step 3: Verify review shows amount, account, check preview"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Mobile deposit confirmation shows reference number",
+    "steps": [
+      "Step 1: Complete deposit",
+      "Step 2: View confirmation",
+      "Step 3: Verify reference number displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Mobile deposit updates account balance",
+    "steps": [
+      "Step 1: Note account balance",
+      "Step 2: Complete mobile deposit",
+      "Step 3: Refresh account",
+      "Step 4: Verify balance increased"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Mobile deposit history shows past deposits",
+    "steps": [
+      "Step 1: Navigate to deposit history",
+      "Step 2: Verify list of past deposits",
+      "Step 3: Verify status shows (pending, completed)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit Card page loads from sidebar",
+    "steps": [
+      "Step 1: Click 'Credit Cards' in sidebar",
+      "Step 2: Verify navigation to /credit-cards",
+      "Step 3: Verify credit card list displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card summary shows current balance",
+    "steps": [
+      "Step 1: Navigate to /credit-cards",
+      "Step 2: View credit card",
+      "Step 3: Verify current balance displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card summary shows available credit",
+    "steps": [
+      "Step 1: Navigate to /credit-cards",
+      "Step 2: View credit card",
+      "Step 3: Verify available credit displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card shows payment due date",
+    "steps": [
+      "Step 1: Navigate to /credit-cards",
+      "Step 2: View credit card details",
+      "Step 3: Verify payment due date displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card shows minimum payment amount",
+    "steps": [
+      "Step 1: Navigate to /credit-cards",
+      "Step 2: View credit card details",
+      "Step 3: Verify minimum payment displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card transaction history displays",
+    "steps": [
+      "Step 1: Navigate to credit card",
+      "Step 2: View transactions",
+      "Step 3: Verify list with date, merchant, amount"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card transactions show category",
+    "steps": [
+      "Step 1: View credit card transactions",
+      "Step 2: Check transaction",
+      "Step 3: Verify category displays (e.g., 'Dining', 'Gas')"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card transactions can be filtered by date",
+    "steps": [
+      "Step 1: Navigate to credit card transactions",
+      "Step 2: Select date range",
+      "Step 3: Verify results filter"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card transactions can be filtered by category",
+    "steps": [
+      "Step 1: Navigate to credit card transactions",
+      "Step 2: Select category",
+      "Step 3: Verify results filter"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card payment can be made",
+    "steps": [
+      "Step 1: Click 'Make Payment' on credit card",
+      "Step 2: Select payment amount (minimum, full, custom)",
+      "Step 3: Select from account",
+      "Step 4: Submit",
+      "Step 5: Verify confirmation"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card payment has confirmation modal",
+    "steps": [
+      "Step 1: Fill payment form",
+      "Step 2: Click submit",
+      "Step 3: Verify confirmation modal appears"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card payment shows reference number",
+    "steps": [
+      "Step 1: Complete payment",
+      "Step 2: View confirmation",
+      "Step 3: Verify reference number displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card payment updates card balance",
+    "steps": [
+      "Step 1: Note credit card balance",
+      "Step 2: Make payment",
+      "Step 3: Refresh",
+      "Step 4: Verify balance decreased"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card payment updates source account balance",
+    "steps": [
+      "Step 1: Note source account balance",
+      "Step 2: Make credit card payment",
+      "Step 3: Refresh source account",
+      "Step 4: Verify balance decreased"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card statements can be viewed",
+    "steps": [
+      "Step 1: Navigate to credit card",
+      "Step 2: Click Statements tab",
+      "Step 3: Verify list of monthly statements (12+ months)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card statements can be downloaded",
+    "steps": [
+      "Step 1: Navigate to Statements tab",
+      "Step 2: Click download on a statement",
+      "Step 3: Verify PDF downloads"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Credit card can be frozen",
+    "steps": [
+      "Step 1: Navigate to credit card",
+      "Step 2: Click 'Freeze Card'",
+      "Step 3: Confirm freeze",
+      "Step 4: Verify card status shows frozen"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Frozen credit card can be unfrozen",
+    "steps": [
+      "Step 1: Navigate to frozen credit card",
+      "Step 2: Click 'Unfreeze Card'",
+      "Step 3: Confirm unfreeze",
+      "Step 4: Verify card status shows active"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Convenience API POST /api/payment processes credit card payment",
+    "steps": [
+      "Step 1: Call POST /api/payment with credit_card_id, amount",
+      "Step 2: Verify response includes reference number",
+      "Step 3: Check state to confirm balances updated"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loans page loads from sidebar",
+    "steps": [
+      "Step 1: Click 'Loans' in sidebar",
+      "Step 2: Verify navigation to /loans",
+      "Step 3: Verify loans list displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan overview shows current balance",
+    "steps": [
+      "Step 1: Navigate to /loans",
+      "Step 2: View a loan",
+      "Step 3: Verify current balance displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan overview shows interest rate",
+    "steps": [
+      "Step 1: Navigate to /loans",
+      "Step 2: View loan details",
+      "Step 3: Verify interest rate displays (percentage)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan overview shows monthly payment amount",
+    "steps": [
+      "Step 1: Navigate to /loans",
+      "Step 2: View loan details",
+      "Step 3: Verify monthly payment displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan overview shows due date",
+    "steps": [
+      "Step 1: Navigate to /loans",
+      "Step 2: View loan details",
+      "Step 3: Verify next due date displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan overview shows payoff date",
+    "steps": [
+      "Step 1: Navigate to /loans",
+      "Step 2: View loan details",
+      "Step 3: Verify maturity/payoff date displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan payment schedule displays",
+    "steps": [
+      "Step 1: Navigate to loan",
+      "Step 2: Click Payment Schedule tab",
+      "Step 3: Verify amortization schedule shows"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Payment schedule shows principal and interest breakdown",
+    "steps": [
+      "Step 1: View payment schedule",
+      "Step 2: Check payment row",
+      "Step 3: Verify principal and interest columns display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan payment history displays",
+    "steps": [
+      "Step 1: Navigate to loan",
+      "Step 2: Click Payment History tab",
+      "Step 3: Verify list of past payments"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Extra payment can be made on loan",
+    "steps": [
+      "Step 1: Click 'Make Extra Payment'",
+      "Step 2: Enter amount",
+      "Step 3: Submit",
+      "Step 4: Verify confirmation"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Extra payment has confirmation modal",
+    "steps": [
+      "Step 1: Fill extra payment form",
+      "Step 2: Click submit",
+      "Step 3: Verify confirmation modal appears"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Extra payment updates loan balance",
+    "steps": [
+      "Step 1: Note loan balance",
+      "Step 2: Make extra payment",
+      "Step 3: Refresh",
+      "Step 4: Verify balance decreased"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Payoff calculation is available",
+    "steps": [
+      "Step 1: Navigate to loan",
+      "Step 2: Click 'Payoff Calculator'",
+      "Step 3: Verify payoff amount displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan application form exists for auto loans",
+    "steps": [
+      "Step 1: Navigate to /loans",
+      "Step 2: Click 'Apply for Auto Loan'",
+      "Step 3: Verify application form displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan application form exists for mortgage",
+    "steps": [
+      "Step 1: Navigate to /loans",
+      "Step 2: Click 'Apply for Mortgage'",
+      "Step 3: Verify application form displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan application form exists for personal loans",
+    "steps": [
+      "Step 1: Navigate to /loans",
+      "Step 2: Click 'Apply for Personal Loan'",
+      "Step 3: Verify application form displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan application form has personal info fields",
+    "steps": [
+      "Step 1: Open loan application",
+      "Step 2: Verify name, address, income fields"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan application form has loan amount field",
+    "steps": [
+      "Step 1: Open loan application",
+      "Step 2: Verify loan amount input"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan application form has term selection",
+    "steps": [
+      "Step 1: Open loan application",
+      "Step 2: Verify term dropdown (months/years)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan application form has purpose field",
+    "steps": [
+      "Step 1: Open loan application",
+      "Step 2: Verify purpose dropdown or text input"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loan application submission shows confirmation",
+    "steps": [
+      "Step 1: Fill loan application",
+      "Step 2: Submit",
+      "Step 3: Verify confirmation message"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Investments page loads from sidebar",
+    "steps": [
+      "Step 1: Click 'Investments' in sidebar",
+      "Step 2: Verify navigation to /investments",
+      "Step 3: Verify investment accounts display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Brokerage account overview displays",
+    "steps": [
+      "Step 1: Navigate to /investments",
+      "Step 2: View brokerage account",
+      "Step 3: Verify account number and total value display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Brokerage holdings list displays",
+    "steps": [
+      "Step 1: Navigate to brokerage account",
+      "Step 2: View holdings",
+      "Step 3: Verify list with symbol, quantity, value"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Holdings show gain/loss information",
+    "steps": [
+      "Step 1: View holdings",
+      "Step 2: Check holding",
+      "Step 3: Verify gain/loss amount and percentage display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Portfolio performance displays total value",
+    "steps": [
+      "Step 1: Navigate to investments",
+      "Step 2: View portfolio summary",
+      "Step 3: Verify total value displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Portfolio performance shows day change",
+    "steps": [
+      "Step 1: View portfolio summary",
+      "Step 2: Verify day change amount displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Portfolio performance shows total return",
+    "steps": [
+      "Step 1: View portfolio summary",
+      "Step 2: Verify total return percentage displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Retirement accounts display (401k, IRA)",
+    "steps": [
+      "Step 1: Navigate to /investments",
+      "Step 2: View retirement section",
+      "Step 3: Verify 401k and IRA accounts show"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Buy securities simulation is available",
+    "steps": [
+      "Step 1: Navigate to brokerage account",
+      "Step 2: Click 'Trade' or 'Buy'",
+      "Step 3: Verify buy form displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Buy form accepts symbol and quantity",
+    "steps": [
+      "Step 1: Open buy form",
+      "Step 2: Enter symbol",
+      "Step 3: Enter quantity",
+      "Step 4: Verify estimated total calculates"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Buy trade has confirmation",
+    "steps": [
+      "Step 1: Fill buy form",
+      "Step 2: Submit",
+      "Step 3: Verify confirmation with reference number"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Buy trade updates holdings",
+    "steps": [
+      "Step 1: Note current holdings",
+      "Step 2: Execute buy trade",
+      "Step 3: Refresh",
+      "Step 4: Verify new holding or increased quantity"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Sell securities simulation is available",
+    "steps": [
+      "Step 1: Navigate to brokerage account",
+      "Step 2: Click 'Trade' or 'Sell'",
+      "Step 3: Verify sell form displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Sell form accepts symbol and quantity",
+    "steps": [
+      "Step 1: Open sell form",
+      "Step 2: Enter symbol",
+      "Step 3: Enter quantity",
+      "Step 4: Verify estimated total calculates"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Sell trade has confirmation",
+    "steps": [
+      "Step 1: Fill sell form",
+      "Step 2: Submit",
+      "Step 3: Verify confirmation with reference number"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Sell trade updates holdings",
+    "steps": [
+      "Step 1: Note current holdings",
+      "Step 2: Execute sell trade",
+      "Step 3: Refresh",
+      "Step 4: Verify decreased quantity or removed holding"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Trade history displays",
+    "steps": [
+      "Step 1: Navigate to brokerage account",
+      "Step 2: Click Trade History",
+      "Step 3: Verify list of past trades"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Market data displays simulated real-time quotes",
+    "steps": [
+      "Step 1: View a holding",
+      "Step 2: Verify current price displays",
+      "Step 3: Verify price changes periodically"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Statements & Documents page loads",
+    "steps": [
+      "Step 1: Click 'Statements & Documents' in sidebar",
+      "Step 2: Verify navigation to statements page"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Statements page lists all account types",
+    "steps": [
+      "Step 1: Navigate to Statements & Documents",
+      "Step 2: Verify statements grouped by account"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Statements show 12+ months of history",
+    "steps": [
+      "Step 1: Navigate to Statements & Documents",
+      "Step 2: Verify statements from previous months"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Statements can be downloaded by account",
+    "steps": [
+      "Step 1: Navigate to Statements & Documents",
+      "Step 2: Select an account",
+      "Step 3: Click download on a statement",
+      "Step 4: Verify PDF downloads"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Tax documents are available",
+    "steps": [
+      "Step 1: Navigate to Statements & Documents",
+      "Step 2: Click Tax Documents",
+      "Step 3: Verify list of tax forms (1099-INT, 1099-DIV, etc.)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Tax documents can be downloaded",
+    "steps": [
+      "Step 1: Navigate to Tax Documents",
+      "Step 2: Click download on a tax form",
+      "Step 3: Verify PDF downloads"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Statement delivery preferences can be set",
+    "steps": [
+      "Step 1: Navigate to Statements & Documents",
+      "Step 2: Click Preferences",
+      "Step 3: Select paperless, email, or paper",
+      "Step 4: Save"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Profile & Settings page loads",
+    "steps": [
+      "Step 1: Click 'Profile & Settings' in sidebar",
+      "Step 2: Verify navigation to /settings"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Personal information displays",
+    "steps": [
+      "Step 1: Navigate to Profile & Settings",
+      "Step 2: View personal info",
+      "Step 3: Verify name, email, phone, address display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Personal information can be edited",
+    "steps": [
+      "Step 1: Navigate to Profile & Settings",
+      "Step 2: Click edit personal info",
+      "Step 3: Update information",
+      "Step 4: Save",
+      "Step 5: Verify changes saved"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Communication preferences can be set",
+    "steps": [
+      "Step 1: Navigate to Profile & Settings",
+      "Step 2: Click Communication Preferences",
+      "Step 3: Toggle paperless, email, SMS notifications",
+      "Step 4: Save"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Recent login history displays",
+    "steps": [
+      "Step 1: Navigate to Profile & Settings",
+      "Step 2: Click Security",
+      "Step 3: Verify recent logins list shows"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Login history shows device and location",
+    "steps": [
+      "Step 1: View login history",
+      "Step 2: Check login entry",
+      "Step 3: Verify device and location display"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Card freeze/unfreeze is available from settings",
+    "steps": [
+      "Step 1: Navigate to Profile & Settings",
+      "Step 2: Click Security",
+      "Step 3: Verify option to freeze cards"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Security alerts display",
+    "steps": [
+      "Step 1: Navigate to Profile & Settings",
+      "Step 2: Click Security",
+      "Step 3: View security alerts section"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "State Management page loads",
+    "steps": [
+      "Step 1: Click 'State Management' in sidebar",
+      "Step 2: Verify navigation to /state-manage"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "State Management has Documentation tab",
+    "steps": [
+      "Step 1: Navigate to /state-manage",
+      "Step 2: Verify Documentation tab exists"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "State Management Documentation shows state schema",
+    "steps": [
+      "Step 1: Click Documentation tab",
+      "Step 2: Verify state field reference displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "State Management has Manage State tab",
+    "steps": [
+      "Step 1: Navigate to /state-manage",
+      "Step 2: Verify Manage State tab exists"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "State Management JSON editor displays current state",
+    "steps": [
+      "Step 1: Click Manage State tab",
+      "Step 2: Verify JSON editor shows current state"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "State Management Save button updates state",
+    "steps": [
+      "Step 1: Modify state in JSON editor",
+      "Step 2: Click Save",
+      "Step 3: Verify state updates (call GET /api/state)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "State Management Reset button clears state",
+    "steps": [
+      "Step 1: Click Reset",
+      "Step 2: Confirm reset",
+      "Step 3: Verify state resets to initial"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "State Management Download button exports state",
+    "steps": [
+      "Step 1: Click Download",
+      "Step 2: Verify state JSON file downloads"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "GET /api/state returns current user state",
+    "steps": [
+      "Step 1: Call GET /api/state",
+      "Step 2: Verify response has data, meta, note structure",
+      "Step 3: Verify data.accounts array exists"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "PATCH /api/state merges into existing state",
+    "steps": [
+      "Step 1: Call PATCH /api/state with partial data",
+      "Step 2: Verify response succeeds",
+      "Step 3: Call GET /api/state",
+      "Step 4: Verify patched data merged without removing siblings"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "PUT /api/state replaces entire state",
+    "steps": [
+      "Step 1: Call PUT /api/state with full state",
+      "Step 2: Verify response succeeds",
+      "Step 3: Call GET /api/state",
+      "Step 4: Verify state matches PUT data"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "DELETE /api/state resets user state",
+    "steps": [
+      "Step 1: Call DELETE /api/state",
+      "Step 2: Verify response succeeds",
+      "Step 3: Call GET /api/state",
+      "Step 4: Verify state is fresh/initial"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "GET /api/info returns system and request info",
+    "steps": [
+      "Step 1: Call GET /api/info",
+      "Step 2: Verify response has headers, path info"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "GET /api/accounts returns account summary",
+    "steps": [
+      "Step 1: Call GET /api/accounts",
+      "Step 2: Verify response has accounts array",
+      "Step 3: Verify each account has id, balance, type"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "MCP tool get_accounts reads accounts",
+    "steps": [
+      "Step 1: Invoke MCP get_accounts tool",
+      "Step 2: Verify tool returns accounts list",
+      "Step 3: Verify balances included"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "MCP tool execute_transfer performs transfer",
+    "steps": [
+      "Step 1: Invoke MCP execute_transfer with from, to, amount",
+      "Step 2: Verify tool returns success",
+      "Step 3: Call GET /api/state",
+      "Step 4: Verify balances updated"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "MCP execute_transfer validates insufficient funds",
+    "steps": [
+      "Step 1: Invoke MCP execute_transfer with amount > balance",
+      "Step 2: Verify tool returns error",
+      "Step 3: Verify error indicates insufficient funds"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "State persists across browser sessions via cookie",
+    "steps": [
+      "Step 1: Make changes to state (transfer, etc.)",
+      "Step 2: Close browser",
+      "Step 3: Reopen and navigate to app",
+      "Step 4: Verify state preserved (check balances)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Different users have isolated state (different cookies)",
+    "steps": [
+      "Step 1: Create transfer in user A session",
+      "Step 2: Open incognito window (user B)",
+      "Step 3: Verify user B state is different"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Search transactions from top nav works",
+    "steps": [
+      "Step 1: Enter transaction search term in top nav",
+      "Step 2: Submit",
+      "Step 3: Verify search results page displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Quick action Transfer button navigates correctly",
+    "steps": [
+      "Step 1: Click Transfer quick action button",
+      "Step 2: Verify navigation to /transfers"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Quick action Pay Bills button navigates correctly",
+    "steps": [
+      "Step 1: Click Pay Bills quick action button",
+      "Step 2: Verify navigation to /bill-pay"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Account selector dropdown switches accounts",
+    "steps": [
+      "Step 1: Click account selector dropdown",
+      "Step 2: Select different account",
+      "Step 3: Verify navigation to that account's detail page"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Breadcrumb navigation works on detail pages",
+    "steps": [
+      "Step 1: Navigate to account detail page",
+      "Step 2: Click breadcrumb",
+      "Step 3: Verify navigates back to dashboard"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Error handling displays user-friendly messages",
+    "steps": [
+      "Step 1: Trigger an error (invalid transfer, etc.)",
+      "Step 2: Verify error message displays",
+      "Step 3: Verify message is user-friendly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Transfer function and transfer history works correctly",
+    "steps": [
+      "Step 1: Make a transfer between accounts",
+      "Step 2: Verify transfer appears in transfer history",
+      "Step 3: Verify balances updated correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Verify cookie can be changed by passing localhost:5173/?cookie=xxxx",
+    "steps": [
+      "Step 1: Open app in browser",
+      "Step 2: Make some state changes and record the value of cookie called user_id",
+      "Step 3: Close browser",
+      "Step 4: Reopen app with different cookie in URL localhost:5173/?cookie=<value of user_id>",
+      "Step 5: Verify state is different from previous session"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "VaultBank blue (#00539F) is primary color",
+    "steps": [
+      "Step 1: Navigate to dashboard",
+      "Step 2: Inspect primary buttons, links",
+      "Step 3: Verify color is #00539F or equivalent"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Typography uses Inter or similar font",
+    "steps": [
+      "Step 1: Navigate to any page",
+      "Step 2: Inspect font-family",
+      "Step 3: Verify Inter or system sans-serif font"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Account cards have visual polish (shadow, border, rounded corners)",
+    "steps": [
+      "Step 1: Navigate to dashboard",
+      "Step 2: View account cards",
+      "Step 3: Verify box-shadow, border, border-radius"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Sidebar has fixed width and is persistent",
+    "steps": [
+      "Step 1: Navigate to any page",
+      "Step 2: Measure sidebar width",
+      "Step 3: Verify sidebar remains when scrolling content"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Tables have zebra striping",
+    "steps": [
+      "Step 1: Navigate to account transactions",
+      "Step 2: View table rows",
+      "Step 3: Verify alternate row background colors"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Table rows have hover effect",
+    "steps": [
+      "Step 1: Navigate to transactions table",
+      "Step 2: Hover over a row",
+      "Step 3: Verify background color changes"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Buttons have hover effects (color darkening, translateY)",
+    "steps": [
+      "Step 1: Navigate to any page with buttons",
+      "Step 2: Hover over button",
+      "Step 3: Verify visual change"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Input fields have focus ring",
+    "steps": [
+      "Step 1: Navigate to a form (transfer, etc.)",
+      "Step 2: Click in input field",
+      "Step 3: Verify blue ring/border appears"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Modals have backdrop blur",
+    "steps": [
+      "Step 1: Trigger a modal (confirmation, etc.)",
+      "Step 2: View overlay",
+      "Step 3: Verify backdrop has blur effect"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Modals are centered on screen",
+    "steps": [
+      "Step 1: Trigger a modal",
+      "Step 2: Verify modal is centered horizontally and vertically"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Toast notifications appear in top-right",
+    "steps": [
+      "Step 1: Trigger a toast (success, error)",
+      "Step 2: Verify position is top-right"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Toast notifications are color-coded by type",
+    "steps": [
+      "Step 1: Trigger success toast",
+      "Step 2: Verify green color",
+      "Step 3: Trigger error toast",
+      "Step 4: Verify red color"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Loading states display spinners",
+    "steps": [
+      "Step 1: Trigger an async operation",
+      "Step 2: Verify loading spinner displays"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Page transitions are smooth",
+    "steps": [
+      "Step 1: Navigate between pages",
+      "Step 2: Verify smooth transition"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Overall design matches VaultBank banking visual quality",
+    "steps": [
+      "Step 1: View dashboard and main pages",
+      "Step 2: Compare to VaultBank screenshots/references",
+      "Step 3: Verify similar visual polish"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Responsive design works on desktop (1024px+)",
+    "steps": [
+      "Step 1: Resize browser to 1024px width",
+      "Step 2: Verify layout works well",
+      "Step 3: Check no horizontal scrolling"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Spacing and alignment are consistent",
+    "steps": [
+      "Step 1: View multiple pages",
+      "Step 2: Check padding, margins",
+      "Step 3: Verify consistent spacing"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Text is readable with good contrast",
+    "steps": [
+      "Step 1: View text on white and colored backgrounds",
+      "Step 2: Verify contrast is readable"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Icons are used appropriately",
+    "steps": [
+      "Step 1: Navigate through app",
+      "Step 2: Verify icons in sidebar, buttons",
+      "Step 3: Verify icons are meaningful"
+    ],
+    "passes": true
+  }
+]

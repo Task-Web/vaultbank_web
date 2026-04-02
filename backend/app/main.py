@@ -113,6 +113,14 @@ async def add_request_id(request: Request, call_next):
 async def health() -> Dict[str, str]:
     return {"status": "ok"}
 
+
+@app.get("/state-doc", tags=["system"])
+async def state_doc():
+    from pathlib import Path
+    content = Path("/app/STATE.md").read_text(encoding="utf-8")
+    return Response(content=content, media_type="text/plain; charset=utf-8")
+
+
 # when build on the basesite, the below endpoints about state management should remain unchanged
 @app.get(f"{settings.api_prefix}/state", response_model=StateResponse, tags=["state"])
 async def get_state(user_id: str = Depends(get_user_id)) -> StateResponse:

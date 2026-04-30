@@ -19,7 +19,6 @@ import Statements from './pages/Statements';
 import Settings from './pages/Settings';
 import MobileDeposit from './pages/MobileDeposit';
 import SearchResults from './pages/SearchResults';
-import PagePlaceholder from './components/PagePlaceholder';
 
 function AppContent() {
   const location = useLocation();

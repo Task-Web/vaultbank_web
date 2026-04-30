@@ -159,20 +159,6 @@ const Sidebar = () => {
           })}
         </Box>
 
-        {/* Support Link */}
-        <Box p={4} borderTop="1px" borderColor={borderColor}>
-          <ChakraLink
-            href="#"
-            display="block"
-            px={6}
-            py={2}
-            fontSize="sm"
-            color="gray.600"
-            _hover={{ color: 'vaultbank.500' }}
-          >
-            Support & Contact
-          </ChakraLink>
-        </Box>
       </Flex>
     </Box>
   );

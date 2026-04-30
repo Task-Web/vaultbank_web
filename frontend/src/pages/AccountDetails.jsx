@@ -243,16 +243,16 @@ const AccountDetails = () => {
 
       {/* Quick Actions */}
       <SimpleGrid columns={{ base: 2, md: 4 }} spacing={4} mb={8}>
-        <Button colorScheme="vaultbank" size="md">
+        <Button colorScheme="vaultbank" size="md" onClick={() => navigate('/transfers')}>
           Transfer Money
         </Button>
-        <Button variant="outline" size="md">
+        <Button variant="outline" size="md" onClick={() => navigate('/bill-pay')}>
           Pay Bills
         </Button>
-        <Button variant="outline" size="md">
+        <Button variant="outline" size="md" onClick={() => navigate('/statements')}>
           View Statements
         </Button>
-        <Button variant="outline" size="md">
+        <Button variant="outline" size="md" onClick={() => navigate('/settings')}>
           {account.card_frozen ? 'Unfreeze Card' : 'Freeze Card'}
         </Button>
       </SimpleGrid>

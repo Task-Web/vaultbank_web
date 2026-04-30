@@ -16,7 +16,7 @@ import {
   Badge,
 } from '@chakra-ui/react';
 import { ChevronDownIcon, BellIcon, SearchIcon } from '@chakra-ui/icons';
-import { FiUser, FiLogOut, FiSettings } from 'react-icons/fi';
+import { FiUser, FiSettings } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../contexts/StateContext';
 import { formatCurrency, maskAccountNumber } from '../utils/formatters';
@@ -174,9 +174,8 @@ const TopNavigation = () => {
               </HStack>
             </MenuButton>
             <MenuList>
-              <MenuItem icon={<Icon as={FiUser} />}>Profile</MenuItem>
-              <MenuItem icon={<Icon as={FiSettings} />}>Settings</MenuItem>
-              <MenuItem icon={<Icon as={FiLogOut} />}>Sign Out</MenuItem>
+              <MenuItem as={Link} to="/settings" icon={<Icon as={FiUser} />}>Profile</MenuItem>
+              <MenuItem as={Link} to="/settings" icon={<Icon as={FiSettings} />}>Settings</MenuItem>
             </MenuList>
           </Menu>
         </HStack>

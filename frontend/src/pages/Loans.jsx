@@ -68,44 +68,6 @@ const formatTime = (dateString) => {
   });
 };
 
-// Sample loan data generator
-const generateSampleLoans = () => {
-  const today = new Date();
-
-  return [
-    {
-      id: 'loan_auto_001',
-      type: 'auto',
-      loan_number: 'AL-7845-3921',
-      original_amount: 35000,
-      current_balance: 22450.75,
-      interest_rate: 4.5,
-      monthly_payment: 650.32,
-      due_date: new Date(today.getFullYear(), today.getMonth() + 1, 15).toISOString(),
-      start_date: new Date(today.getFullYear() - 2, today.getMonth(), today.getDate()).toISOString(),
-      maturity_date: new Date(today.getFullYear() + 3, today.getMonth(), today.getDate()).toISOString(),
-      payment_schedule: generatePaymentSchedule(35000, 4.5, 60, today),
-      payment_history: generatePaymentHistory(today, 24),
-      status: 'active',
-    },
-    {
-      id: 'loan_mortgage_001',
-      type: 'mortgage',
-      loan_number: 'MT-4521-8834',
-      original_amount: 350000,
-      current_balance: 328750.50,
-      interest_rate: 6.25,
-      monthly_payment: 2154.78,
-      due_date: new Date(today.getFullYear(), today.getMonth() + 1, 1).toISOString(),
-      start_date: new Date(today.getFullYear() - 1, today.getMonth(), today.getDate()).toISOString(),
-      maturity_date: new Date(today.getFullYear() + 29, today.getMonth(), today.getDate()).toISOString(),
-      payment_schedule: generatePaymentSchedule(350000, 6.25, 360, today),
-      payment_history: generatePaymentHistory(today, 12),
-      status: 'active',
-    },
-  ];
-};
-
 const generatePaymentSchedule = (principal, annualRate, months, startDate) => {
   const schedule = [];
   const monthlyRate = annualRate / 100 / 12;
@@ -133,21 +95,6 @@ const generatePaymentSchedule = (principal, annualRate, months, startDate) => {
   }
 
   return schedule;
-};
-
-const generatePaymentHistory = (startDate, count) => {
-  const history = [];
-  for (let i = 0; i < count; i++) {
-    const paymentDate = new Date(startDate);
-    paymentDate.setMonth(paymentDate.getMonth() - i);
-
-    history.push({
-      date: paymentDate.toISOString(),
-      amount: 650 + Math.random() * 100,
-      status: 'completed',
-    });
-  }
-  return history;
 };
 
 const Loans = () => {
@@ -183,21 +130,12 @@ const Loans = () => {
     if (loading) {
       return;
     }
-    if (state?.data?.loans && state.data.loans.length > 0) {
-      setLoans(state.data.loans);
-      if (!selectedLoan && state.data.loans.length > 0) {
-        setSelectedLoan(state.data.loans[0]);
-      }
-    } else {
-      // Initialize with sample data
-      const sampleLoans = generateSampleLoans();
-      setLoans(sampleLoans);
-      if (sampleLoans.length > 0) {
-        setSelectedLoan(sampleLoans[0]);
-      }
-      // Save to state
-      updateState({ loans: sampleLoans });
-    }
+    const storedLoans = Array.isArray(state?.data?.loans) ? state.data.loans : [];
+    setLoans(storedLoans);
+    setSelectedLoan((currentLoan) => {
+      const currentLoanId = currentLoan?.id;
+      return storedLoans.find((loan) => loan.id === currentLoanId) || storedLoans[0] || null;
+    });
   }, [state, loading]);
 
   const handleFreezeCard = (loanId) => {
@@ -418,14 +356,10 @@ const Loans = () => {
     return selectedLoan.current_balance * (1 + monthlyRate * remainingPayments);
   };
 
-  if (!selectedLoan) {
+  if (loading) {
     return (
       <Box p={8}>
-        <Heading size="lg" mb={4}>Loans</Heading>
-        <Text>No loans found. Apply for a loan to get started.</Text>
-        <Button mt={4} colorScheme="blue" onClick={() => setIsApplicationModalOpen(true)}>
-          Apply for a Loan
-        </Button>
+        <Text>Loading loans...</Text>
       </Box>
     );
   }
@@ -441,6 +375,12 @@ const Loans = () => {
       </Box>
 
       <Box p={8} maxW="1400px" mx="auto">
+        {loans.length === 0 && (
+          <Text mb={4} color="gray.600">
+            No loans found. Apply for a loan to get started.
+          </Text>
+        )}
+
         {/* Loan Selector */}
         <Grid templateColumns="repeat(2, 1fr)" gap={4} mb={6}>
           {loans.map((loan) => (
@@ -503,6 +443,7 @@ const Loans = () => {
         </Grid>
 
         {/* Loan Details */}
+        {selectedLoan && (
         <Tabs>
           <TabList mb={4}>
             <Tab>Overview</Tab>
@@ -716,6 +657,7 @@ const Loans = () => {
             </TabPanel>
           </TabPanels>
         </Tabs>
+        )}
       </Box>
 
       {/* Loan Application Modal */}

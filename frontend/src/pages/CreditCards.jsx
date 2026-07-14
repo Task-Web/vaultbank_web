@@ -62,113 +62,6 @@ const formatDate = (dateString) => {
   });
 };
 
-// Sample credit card data generator
-const generateSampleCreditCards = () => {
-  const today = new Date();
-  const thirtyDaysAgo = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000);
-
-  // Generate statements
-  const generateStatements = () => {
-    const statements = [];
-    const months = ['December', 'November', 'October', 'September', 'August', 'July', 'June', 'May', 'April', 'March', 'February', 'January'];
-
-    for (let i = 0; i < 12; i++) {
-      const month = months[i];
-      const year = i === 0 ? 2024 : 2024;
-      const generatedDate = new Date(year, i === 0 ? 11 : 10 - i, 15);
-
-      statements.push({
-        id: `stmt_${Math.random().toString(36).substr(2, 9)}`,
-        period: `${month} ${year}`,
-        url: `https://example.com/statements/cc_${month.toLowerCase()}_${year}.pdf`,
-        generated_date: generatedDate.toISOString(),
-      });
-    }
-
-    return statements;
-  };
-
-  // Generate transactions
-  const generateTransactions = () => {
-    const transactions = [];
-    const merchants = [
-      { name: 'Amazon', category: 'Shopping' },
-      { name: 'Target', category: 'Shopping' },
-      { name: 'Shell Gas', category: 'Gas & Fuel' },
-      { name: 'Uber', category: 'Transportation' },
-      { name: 'Netflix', category: 'Entertainment' },
-      { name: 'Grocery Store', category: 'Groceries' },
-      { name: 'Restaurant', category: 'Food & Dining' },
-      { name: 'Apple Store', category: 'Electronics' },
-      { name: 'Pharmacy', category: 'Healthcare' },
-      { name: 'Utility Company', category: 'Utilities' },
-    ];
-    const areas = ['San Francisco', 'New York', 'Austin', 'Seattle', 'Chicago', 'Boston'];
-    const countries = ['United States', 'Canada', 'United Kingdom', 'Germany', 'Japan', 'Australia'];
-
-    for (let i = 0; i < 45; i++) {
-      const merchant = merchants[Math.floor(Math.random() * merchants.length)];
-      const amount = Math.round((Math.random() * 200 + 10) * 100) / 100;
-      const date = new Date(thirtyDaysAgo.getTime() + Math.random() * 30 * 24 * 60 * 60 * 1000);
-      const postDate = new Date(date.getTime() + 24 * 60 * 60 * 1000);
-
-      transactions.push({
-        id: `cc_txn_${Math.random().toString(36).substr(2, 9)}`,
-        date: date.toISOString(),
-        post_date: postDate.toISOString(),
-        transaction_time: formatTime(date.toISOString()),
-        description: merchant.name,
-        merchant_name: merchant.name,
-        area_district: areas[Math.floor(Math.random() * areas.length)],
-        country_region: countries[Math.floor(Math.random() * countries.length)],
-        amount: amount,
-        transaction_amount: amount,
-        billing_amount: amount,
-        transaction_currency: 'USD',
-        billing_currency: 'USD',
-        category: merchant.category,
-        type: 'debit',
-        merchant: merchant.name,
-      });
-    }
-
-    return transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
-  };
-
-  return [
-    {
-      id: 'cc_48291023',
-      card_number: '4829',
-      cardholder_name: 'John Doe',
-      expiration_date: '08/26',
-      current_balance: 2450.78,
-      available_credit: 7549.22,
-      credit_limit: 10000,
-      payment_due_date: new Date(today.getTime() + 15 * 24 * 60 * 60 * 1000).toISOString(),
-      minimum_payment: 73.52,
-      statements: generateStatements(),
-      transactions: generateTransactions(),
-      status: 'active',
-      card_frozen: false,
-    },
-    {
-      id: 'cc_55192847',
-      card_number: '2847',
-      cardholder_name: 'John Doe',
-      expiration_date: '12/25',
-      current_balance: 1256.34,
-      available_credit: 8743.66,
-      credit_limit: 10000,
-      payment_due_date: new Date(today.getTime() + 20 * 24 * 60 * 60 * 1000).toISOString(),
-      minimum_payment: 37.69,
-      statements: generateStatements(),
-      transactions: generateTransactions(),
-      status: 'active',
-      card_frozen: false,
-    },
-  ];
-};
-
 const CreditCardSummary = ({ card, onMakePayment, onToggleFreeze }) => {
   const bgColor = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
@@ -555,28 +448,15 @@ const CreditCards = () => {
     if (loading) {
       return;
     }
-    const storedCards = state?.data?.credit_cards;
-
-    if (!storedCards || storedCards.length === 0) {
-      // Initialize sample credit cards
-      const sampleCards = generateSampleCreditCards();
-      updateState({ credit_cards: sampleCards }, 'Initialize sample credit cards');
-      setCreditCards(sampleCards);
-    } else {
-      setCreditCards(storedCards);
-    }
-
-    // Select first card by default
-    if (storedCards && storedCards.length > 0) {
-      setSelectedCard(storedCards[0]);
-    }
+    const storedCards = Array.isArray(state?.data?.credit_cards)
+      ? state.data.credit_cards
+      : [];
+    setCreditCards(storedCards);
+    setSelectedCard((currentCard) => {
+      const currentCardId = currentCard?.id;
+      return storedCards.find((card) => card.id === currentCardId) || storedCards[0] || null;
+    });
   }, [state, loading]);
-
-  useEffect(() => {
-    if (creditCards.length > 0 && !selectedCard) {
-      setSelectedCard(creditCards[0]);
-    }
-  }, [creditCards]);
 
   const handleMakePayment = (card) => {
     setSelectedCard(card);
@@ -637,10 +517,10 @@ const CreditCards = () => {
       return;
     }
 
-    if (sourceAccount.current_balance < amount) {
+    if (sourceAccount.available_balance < amount) {
       toast({
         title: 'Insufficient Funds',
-        description: `Selected account only has ${formatCurrency(sourceAccount.current_balance)}`,
+        description: `Selected account only has ${formatCurrency(sourceAccount.available_balance)} available`,
         status: 'error',
         duration: 3000,
       });
@@ -791,7 +671,7 @@ const CreditCards = () => {
     }
   };
 
-  if (creditCards.length === 0) {
+  if (loading || !state || !state.data) {
     return (
       <Box p={8} bg={bgColor} minH="100vh">
         <Text>Loading credit cards...</Text>
@@ -799,11 +679,11 @@ const CreditCards = () => {
     );
   }
 
-  // Show loading if state is not yet available
-  if (!state || !state.data) {
+  if (creditCards.length === 0) {
     return (
-      <Box p={8} bg={bgColor} minH="100vh" display="flex" alignItems="center" justifyContent="center">
-        <Text>Loading...</Text>
+      <Box p={8} bg={bgColor} minH="100vh">
+        <Heading size="lg" mb={2}>Credit Cards</Heading>
+        <Text color="gray.600">No credit cards found.</Text>
       </Box>
     );
   }

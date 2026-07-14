@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -81,7 +81,7 @@ const BillPay = () => {
 
   // Get data from state with defaults
   // State structure: { state: { data: { accounts, bill_pay, data: { bill_pay, ... } } } }
-  const stateData = state?.data || state?.data || {};
+  const stateData = state?.data || {};
   // Bill pay data is nested at data.data.bill_pay
   const nestedData = stateData?.data || {};
   const billPay = nestedData?.bill_pay || stateData?.bill_pay || {
@@ -95,49 +95,6 @@ const BillPay = () => {
   const scheduledPayments = billPay.scheduled_payments || [];
   const paymentHistory = billPay.payment_history || [];
   const accounts = stateData?.accounts || [];
-
-  // Initialize sample payees if none exist
-  useEffect(() => {
-    if (payees.length === 0) {
-      initializeSamplePayees();
-    }
-  }, []);
-
-  const initializeSamplePayees = async () => {
-    const samplePayees = [
-      {
-        id: 'payee_001',
-        name: 'Electric Company',
-        account_number: '123456789',
-        address: '123 Power Grid Ave, Energy City, EC 12345',
-        nickname: 'Electric Bill',
-      },
-      {
-        id: 'payee_002',
-        name: 'City Water Dept',
-        account_number: '987654321',
-        address: '456 River Road, Watertown, WT 54321',
-        nickname: 'Water Bill',
-      },
-      {
-        id: 'payee_003',
-        name: 'Internet Provider',
-        account_number: '555555555',
-        address: '789 Fiber Optic Blvd, Netville, NV 78910',
-        nickname: 'Internet',
-      },
-    ];
-
-    await updateState({
-      data: {
-        bill_pay: {
-          ...billPay,
-          payees: samplePayees,
-        },
-      },
-      note: 'Initialize sample payees',
-    });
-  };
 
   // Format currency
   const formatCurrency = (amount) => {

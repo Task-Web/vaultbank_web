@@ -38,11 +38,11 @@ export const StateProvider = ({ children }) => {
     }
   }, []);
 
-  const updateState = async (payload) => {
+  const updateState = async (payload, fallbackNote) => {
     try {
       // Handle both formats: updateState({ data, note }) and updateState(data, note)
       const data = payload?.data || payload;
-      const note = payload?.note;
+      const note = payload?.note ?? fallbackNote;
       const response = await api.patchState(data, note);
       setState(response.state || response);
       return response.state || response;

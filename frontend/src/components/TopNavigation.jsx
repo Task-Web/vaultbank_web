@@ -20,12 +20,14 @@ import { FiUser, FiSettings } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../contexts/StateContext';
 import { formatCurrency, maskAccountNumber } from '../utils/formatters';
+import { getUserDisplayName } from '../utils/userProfile';
 
 const TopNavigation = () => {
   const bgColor = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
   const { state } = useStateContext();
   const accounts = state?.data?.accounts || [];
+  const displayName = getUserDisplayName(state?.data?.user_profile);
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -167,9 +169,9 @@ const TopNavigation = () => {
               px={2}
             >
               <HStack spacing={2}>
-                <Avatar size="xs" name="John Doe" bg="vaultbank.500" />
+                <Avatar size="xs" name={displayName} bg="vaultbank.500" />
                 <Text fontSize="sm" fontWeight="medium">
-                  John Doe
+                  {displayName}
                 </Text>
               </HStack>
             </MenuButton>

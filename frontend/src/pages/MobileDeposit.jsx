@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -170,7 +170,7 @@ const MobileDeposit = () => {
             billing_amount: parseFloat(depositForm.amount),
             transaction_currency: acc.currency || 'USD',
             billing_currency: acc.currency || 'USD',
-            running_balance: acc.available_balance + parseFloat(depositForm.amount),
+            running_balance: acc.current_balance,
             category: 'Deposit',
             type: 'credit',
             merchant_name: 'Mobile Deposit',

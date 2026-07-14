@@ -70,197 +70,6 @@ const formatDate = (dateString) => {
   });
 };
 
-// Sample investment data generator
-const generateSampleInvestments = () => {
-  const today = new Date();
-
-  // Brokerage account
-  const brokerageHoldings = [
-    {
-      symbol: 'AAPL',
-      name: 'Apple Inc.',
-      quantity: 150,
-      average_cost: 145.50,
-      current_price: 178.72,
-    },
-    {
-      symbol: 'MSFT',
-      name: 'Microsoft Corporation',
-      quantity: 100,
-      average_cost: 285.00,
-      current_price: 374.58,
-    },
-    {
-      symbol: 'GOOGL',
-      name: 'Alphabet Inc.',
-      quantity: 75,
-      average_cost: 125.75,
-      current_price: 141.80,
-    },
-    {
-      symbol: 'AMZN',
-      name: 'Amazon.com Inc.',
-      quantity: 80,
-      average_cost: 145.20,
-      current_price: 153.42,
-    },
-    {
-      symbol: 'NVDA',
-      name: 'NVIDIA Corporation',
-      quantity: 50,
-      average_cost: 450.00,
-      current_price: 495.22,
-    },
-    {
-      symbol: 'TSLA',
-      name: 'Tesla Inc.',
-      quantity: 60,
-      average_cost: 240.00,
-      current_price: 248.50,
-    },
-    {
-      symbol: 'META',
-      name: 'Meta Platforms Inc.',
-      quantity: 40,
-      average_cost: 320.00,
-      current_price: 354.23,
-    },
-    {
-      symbol: 'JPM',
-      name: 'VaultBank Inc.',
-      quantity: 120,
-      average_cost: 145.00,
-      current_price: 172.35,
-    },
-  ];
-
-  const brokerage = {
-    account_number: 'BRK-78456321',
-    cash_balance: 12543.67,
-    holdings: brokerageHoldings.map(h => ({
-      ...h,
-      current_value: h.quantity * h.current_price,
-      cost_basis: h.quantity * h.average_cost,
-      gain_loss: h.quantity * (h.current_price - h.average_cost),
-      gain_loss_percent: ((h.current_price - h.average_cost) / h.average_cost) * 100,
-    })),
-    trades: [
-      {
-        id: `trade_${Math.random().toString(36).substr(2, 9)}`,
-        symbol: 'AAPL',
-        type: 'buy',
-        quantity: 50,
-        price: 175.30,
-        total: 8765.00,
-        date: new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-      },
-      {
-        id: `trade_${Math.random().toString(36).substr(2, 9)}`,
-        symbol: 'MSFT',
-        type: 'buy',
-        quantity: 30,
-        price: 368.50,
-        total: 11055.00,
-        date: new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000).toISOString(),
-      },
-      {
-        id: `trade_${Math.random().toString(36).substr(2, 9)}`,
-        symbol: 'GOOGL',
-        type: 'sell',
-        quantity: 25,
-        price: 139.20,
-        total: 3480.00,
-        date: new Date(today.getTime() - 21 * 24 * 60 * 60 * 1000).toISOString(),
-      },
-    ],
-  };
-
-  // Calculate total value
-  brokerage.total_value = brokerage.cash_balance + brokerage.holdings.reduce((sum, h) => sum + h.current_value, 0);
-
-  // Calculate day change (simulated)
-  brokerage.day_change = brokerage.total_value * 0.0032; // 0.32% change
-  brokerage.day_change_percent = 0.32;
-
-  // Calculate total return
-  const total_cost = brokerage.holdings.reduce((sum, h) => sum + h.cost_basis, 0);
-  brokerage.total_return = (brokerage.total_value - total_cost - brokerage.cash_balance);
-  brokerage.total_return_percent = ((brokerage.total_value - total_cost - brokerage.cash_balance) / (total_cost + brokerage.cash_balance)) * 100;
-
-  // Retirement accounts
-  const retirement = [
-    {
-      account_type: '401k',
-      account_number: 'RET-401K-45678',
-      total_value: 127450.00,
-      day_change: 892.34,
-      day_change_percent: 0.70,
-      cash_balance: 8450.00,
-      holdings: [
-        {
-          symbol: 'VFIAX',
-          name: 'Vanguard 500 Index Fund Admiral',
-          quantity: 245.5,
-          average_cost: 385.00,
-          current_price: 412.50,
-          current_value: 101268.75,
-          cost_basis: 94517.50,
-          gain_loss: 6751.25,
-          gain_loss_percent: 7.14,
-        },
-        {
-          symbol: 'VTSAX',
-          name: 'Vanguard Total Stock Market Index',
-          quantity: 52.3,
-          average_cost: 95.00,
-          current_price: 102.40,
-          current_value: 5355.52,
-          cost_basis: 4968.50,
-          gain_loss: 387.02,
-          gain_loss_percent: 7.79,
-        },
-      ],
-    },
-    {
-      account_type: 'IRA',
-      account_number: 'RET-IRA-89012',
-      total_value: 68234.50,
-      day_change: 423.67,
-      day_change_percent: 0.62,
-      cash_balance: 5234.50,
-      holdings: [
-        {
-          symbol: 'VGSLX',
-          name: 'Vanguard Real Estate Index Admiral',
-          quantity: 185.0,
-          average_cost: 285.00,
-          current_price: 308.40,
-          current_value: 57054.00,
-          cost_basis: 52725.00,
-          gain_loss: 4329.00,
-          gain_loss_percent: 8.21,
-        },
-        {
-          symbol: 'VBTLX',
-          name: 'Vanguard Total Bond Market Index',
-          quantity: 48.2,
-          average_cost: 98.50,
-          current_price: 102.30,
-          current_value: 4930.86,
-          cost_basis: 4747.70,
-          gain_loss: 183.16,
-          gain_loss_percent: 3.86,
-        },
-      ],
-    },
-  ];
-
-  return {
-    brokerage,
-    retirement,
-  };
-};
-
 const Investments = () => {
   const { state, updateState, loading } = useStateContext();
   const [investments, setInvestments] = useState(null);
@@ -279,25 +88,22 @@ const Investments = () => {
     if (loading) {
       return;
     }
-    // Load or initialize investments data
-    if (state?.data?.investments) {
-      setInvestments(state.data.investments);
-    } else {
-      // Initialize with sample data
-      const sampleData = generateSampleInvestments();
-      setInvestments(sampleData);
-
-      // Save to state
-      updateState({
-        investments: sampleData,
-      }, 'Initialize sample investment accounts');
-    }
+    setInvestments(state?.data?.investments || null);
   }, [state, loading]);
+
+  if (loading) {
+    return (
+      <Box p={8}>
+        <Text>Loading investment accounts...</Text>
+      </Box>
+    );
+  }
 
   if (!investments) {
     return (
       <Box p={8}>
-        <Text>Loading investment accounts...</Text>
+        <Heading size="lg" mb={2}>Investment Accounts</Heading>
+        <Text color="gray.600">No investment accounts found.</Text>
       </Box>
     );
   }

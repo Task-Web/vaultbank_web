@@ -24,11 +24,50 @@ async function request(path, options = {}) {
 
 export const api = {
   baseUrl: API_BASE,
-  getState: () => request("/state"),
-  replaceState: (data, note, meta) =>
-    request("/state", { method: "PUT", body: JSON.stringify({ data, note, meta }) }),
-  patchState: (data, note) => request("/state", { method: "PATCH", body: JSON.stringify({ data, note }) }),
-  resetState: () => request("/state", { method: "DELETE" }),
+  getDashboard: () => request("/vaultbank/dashboard"),
+  executeTransfer: (payload) =>
+    request("/transfer", { method: "POST", body: JSON.stringify(payload) }),
+  makePayment: (payload) =>
+    request("/payment", { method: "POST", body: JSON.stringify(payload) }),
+  cancelTransfer: (transferId) =>
+    request(`/vaultbank/transfers/${encodeURIComponent(transferId)}`, { method: "DELETE" }),
+  cancelPayment: (paymentId) =>
+    request(`/vaultbank/payments/${encodeURIComponent(paymentId)}`, { method: "DELETE" }),
+  updateProfile: (payload) =>
+    request("/vaultbank/profile", { method: "PATCH", body: JSON.stringify(payload) }),
+  setCardFrozen: (cardId, frozen) =>
+    request(`/vaultbank/cards/${encodeURIComponent(cardId)}/freeze`, {
+      method: "PUT",
+      body: JSON.stringify({ frozen }),
+    }),
+  payCard: (cardId, payload) =>
+    request(`/vaultbank/cards/${encodeURIComponent(cardId)}/payments`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  createPayee: (payload) =>
+    request("/vaultbank/payees", { method: "POST", body: JSON.stringify(payload) }),
+  updatePayee: (payeeId, payload) =>
+    request(`/vaultbank/payees/${encodeURIComponent(payeeId)}`, {
+      method: "PATCH",
+      body: JSON.stringify(payload),
+    }),
+  deletePayee: (payeeId) =>
+    request(`/vaultbank/payees/${encodeURIComponent(payeeId)}`, { method: "DELETE" }),
+  executeTrade: (accountType, payload) =>
+    request(`/vaultbank/investments/${encodeURIComponent(accountType)}/trades`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  applyForLoan: (payload) =>
+    request("/vaultbank/loans", { method: "POST", body: JSON.stringify(payload) }),
+  payLoan: (loanId, payload) =>
+    request(`/vaultbank/loans/${encodeURIComponent(loanId)}/payments`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  createMobileDeposit: (payload) =>
+    request("/vaultbank/mobile-deposits", { method: "POST", body: JSON.stringify(payload) }),
   getInfo: () => request("/info"),
   listFiles: () => request("/files"),
   uploadFiles: (files = []) => {

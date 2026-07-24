@@ -47,7 +47,7 @@ import { useStateContext } from '../contexts/StateContext';
 import { formatTime } from '../utils/formatters';
 
 const BillPay = () => {
-  const { state, updateState } = useStateContext();
+  const { state, applyVaultbankChange } = useStateContext();
   const navigate = useNavigate();
   const toast = useToast();
 
@@ -191,7 +191,7 @@ const BillPay = () => {
       updatedPayees = [...payees, payeeData];
     }
 
-    await updateState({
+    await applyVaultbankChange({
       data: {
         bill_pay: {
           ...billPay,
@@ -214,7 +214,7 @@ const BillPay = () => {
   // Delete payee
   const deletePayee = async (payeeId) => {
     const updatedPayees = payees.filter((p) => p.id !== payeeId);
-    await updateState({
+    await applyVaultbankChange({
       data: {
         bill_pay: {
           ...billPay,
@@ -359,7 +359,7 @@ const BillPay = () => {
         : scheduledPayments,
     };
 
-    await updateState({
+    await applyVaultbankChange({
       data: {
         accounts: updatedAccounts,
         bill_pay: updatedBillPay,
@@ -394,7 +394,7 @@ const BillPay = () => {
     // Remove the payment from scheduled payments
     const updatedPayments = scheduledPayments.filter((p) => p.id !== paymentId);
 
-    await updateState({
+    await applyVaultbankChange({
       data: {
         bill_pay: {
           ...billPay,

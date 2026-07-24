@@ -1,6 +1,6 @@
 import asyncio
 import copy
-from typing import Any, Dict, Optional
+from typing import Any, Callable, Dict, Optional
 
 from .models import UserState
 
@@ -53,6 +53,21 @@ class StateStore:
     async def reset_state(self, user_id: str) -> UserState:
         async with self._lock:
             state = UserState()
+            self._states[user_id] = state
+            return state
+
+    async def mutate_data(
+        self,
+        user_id: str,
+        mutator: Callable[[Dict[str, Any]], Dict[str, Any]],
+        note: Optional[str] = None,
+    ) -> UserState:
+        async with self._lock:
+            state = self._states.get(user_id, UserState())
+            state.data = mutator(copy.deepcopy(state.data))
+            if note is not None:
+                state.note = note
+            state.touch()
             self._states[user_id] = state
             return state
 

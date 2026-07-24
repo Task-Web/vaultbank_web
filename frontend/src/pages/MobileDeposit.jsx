@@ -33,7 +33,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { formatTime } from '../utils/formatters';
 
 const MobileDeposit = () => {
-  const { state, loading, updateState, refreshState } = useStateContext();
+  const { state, loading, applyVaultbankChange, refreshState } = useStateContext();
   const toast = useToast();
 
   const [depositForm, setDepositForm] = useState({
@@ -187,7 +187,7 @@ const MobileDeposit = () => {
       });
 
       // Update state
-      await updateState(
+      await applyVaultbankChange(
         {
           accounts: accountWithTransaction,
           mobile_deposits: [...deposits, newDeposit],

@@ -4,7 +4,7 @@ import platform
 import uuid
 from datetime import datetime, timedelta
 from contextlib import asynccontextmanager
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from fastapi import Depends, FastAPI, File, HTTPException, Request, Response, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,14 +15,13 @@ from .config import Settings, get_settings
 from .file_store import FileStore
 from .schemas import FileMetadata, InfoResponse, StatePatchRequest, StateRequest, StateResponse
 from .state_store import StateStore
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 settings = get_settings()
 store = StateStore()
 file_store = FileStore("files", settings.api_prefix)
 
 tags_metadata = [
-    {"name": "state", "description": "Manage per-user experiment state"},
     {"name": "files", "description": "Upload and fetch files scoped to a user cookie"},
     {"name": "system", "description": "Environment and health information"},
     {"name": "convenience", "description": "Convenience endpoints for common operations"},
@@ -114,15 +113,13 @@ async def health() -> Dict[str, str]:
     return {"status": "ok"}
 
 
-@app.get("/state-doc", tags=["system"])
-async def state_doc():
-    from pathlib import Path
-    content = Path("/app/STATE.md").read_text(encoding="utf-8")
-    return Response(content=content, media_type="text/plain; charset=utf-8")
-
-
 # when build on the basesite, the below endpoints about state management should remain unchanged
-@app.get(f"{settings.api_prefix}/state", response_model=StateResponse, tags=["state"])
+@app.get(
+    f"{settings.api_prefix}/state",
+    response_model=StateResponse,
+    tags=["state"],
+    include_in_schema=False,
+)
 async def get_state(user_id: str = Depends(get_user_id)) -> StateResponse:
     state = await store.get_state(user_id)
     return StateResponse(user_id=user_id, state=state)
@@ -133,6 +130,7 @@ async def get_state(user_id: str = Depends(get_user_id)) -> StateResponse:
     response_model=StateResponse,
     tags=["state"],
     summary="Replace state",
+    include_in_schema=False,
 )
 async def put_state(payload: StateRequest, user_id: str = Depends(get_user_id)) -> StateResponse:
     next_state = {"data": payload.data, "note": payload.note}
@@ -147,6 +145,7 @@ async def put_state(payload: StateRequest, user_id: str = Depends(get_user_id)) 
     response_model=StateResponse,
     tags=["state"],
     summary="Merge into existing state",
+    include_in_schema=False,
 )
 async def patch_state(
     payload: StatePatchRequest, user_id: str = Depends(get_user_id)
@@ -160,11 +159,37 @@ async def patch_state(
     response_model=StateResponse,
     tags=["state"],
     summary="Reset and clear state",
+    include_in_schema=False,
 )
 async def delete_state(user_id: str = Depends(get_user_id)) -> StateResponse:
     file_store.delete_user_files(user_id)
     state = await store.reset_state(user_id)
     return StateResponse(user_id=user_id, state=state)
+
+
+VAULTBANK_PRODUCT_KEYS = (
+    "accounts",
+    "credit_cards",
+    "loans",
+    "investments",
+    "bill_pay",
+    "transfers",
+    "user_profile",
+    "mobile_deposits",
+)
+
+
+def _vaultbank_projection(user_id: str, data: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "user_id": user_id,
+        "data": {key: data.get(key) for key in VAULTBANK_PRODUCT_KEYS},
+    }
+
+
+@app.get(f"{settings.api_prefix}/vaultbank/dashboard", tags=["vaultbank"])
+async def get_vaultbank_dashboard(user_id: str = Depends(get_user_id)) -> Dict[str, Any]:
+    state = await store.get_state(user_id)
+    return _vaultbank_projection(user_id, state.data)
 
 
 @app.post(
@@ -241,19 +266,23 @@ async def http_exception_handler(request: Request, exc: HTTPException):
 
 
 # Convenience API schemas
-class TransferRequest(BaseModel):
+class ProductRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+
+class TransferRequest(ProductRequest):
     from_account_id: str
     to_account_id: Optional[str] = None
-    amount: float
-    transfer_type: str = "internal"  # "internal" or "external"
-    frequency: str = "once"
+    amount: float = Field(gt=0)
+    transfer_type: Literal["internal", "external"] = "internal"
+    frequency: Literal["once", "weekly", "monthly"] = "once"
     scheduled_date: Optional[str] = None
     memo: Optional[str] = None
     # External transfer fields
     external_account_name: Optional[str] = None
     external_account_number: Optional[str] = None
     external_routing_number: Optional[str] = None
-    external_account_type: Optional[str] = "checking"
+    external_account_type: Optional[Literal["checking", "savings"]] = "checking"
 
 
 class TransferResponse(BaseModel):
@@ -263,13 +292,14 @@ class TransferResponse(BaseModel):
     message: str
 
 
-class PaymentRequest(BaseModel):
+class PaymentRequest(ProductRequest):
     from_account_id: str
-    amount: float
-    payment_type: str  # "bill" or "credit_card"
+    amount: float = Field(gt=0)
+    payment_type: Literal["bill", "credit_card"]
     payee_id: Optional[str] = None
     credit_card_id: Optional[str] = None
     scheduled_date: Optional[str] = None
+    frequency: Literal["once", "weekly", "monthly"] = "once"
     memo: Optional[str] = None
 
 
@@ -278,6 +308,464 @@ class PaymentResponse(BaseModel):
     payment_id: str
     reference_number: str
     message: str
+
+
+class AddressRequest(ProductRequest):
+    street: str
+    city: str
+    state: str
+    zip: str
+
+
+class CommunicationPreferencesRequest(ProductRequest):
+    paperless: bool
+    email_notifications: bool
+    sms_notifications: bool
+
+
+class ProfileUpdateRequest(ProductRequest):
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    email: Optional[str] = None
+    phone: Optional[str] = None
+    address: Optional[AddressRequest] = None
+    communication_preferences: Optional[CommunicationPreferencesRequest] = None
+
+
+class CardFreezeRequest(ProductRequest):
+    frozen: bool
+
+
+class CardPaymentRequest(ProductRequest):
+    account_id: str
+    amount: float = Field(gt=0)
+
+
+class PayeeRequest(ProductRequest):
+    name: str
+    account_number: str
+    address: str
+    nickname: Optional[str] = None
+
+
+class InvestmentTradeRequest(ProductRequest):
+    symbol: str
+    trade_type: Literal["buy", "sell"]
+    quantity: int = Field(gt=0)
+    price: float = Field(gt=0)
+
+
+class LoanApplicationRequest(ProductRequest):
+    loan_type: Literal["auto", "mortgage", "personal"]
+    amount: float = Field(gt=0)
+    term_months: int = Field(ge=12, le=360)
+
+
+class LoanPaymentRequest(ProductRequest):
+    account_id: str
+    amount: float = Field(gt=0)
+
+
+class MobileDepositRequest(ProductRequest):
+    account_id: str
+    amount: float = Field(gt=0)
+    front_image: str
+    back_image: str
+
+
+@app.patch(f"{settings.api_prefix}/vaultbank/profile", tags=["vaultbank"])
+async def update_vaultbank_profile(
+    payload: ProfileUpdateRequest, user_id: str = Depends(get_user_id)
+) -> Dict[str, Any]:
+    values = payload.model_dump(exclude_none=True)
+    if not values:
+        raise HTTPException(status_code=422, detail="At least one profile field is required")
+
+    def mutate(data: Dict[str, Any]) -> Dict[str, Any]:
+        profile = data.setdefault("user_profile", {})
+        for key, value in values.items():
+            if isinstance(value, dict) and isinstance(profile.get(key), dict):
+                profile[key] = {**profile[key], **value}
+            else:
+                profile[key] = value
+        return data
+
+    state = await store.mutate_data(user_id, mutate, "Updated VaultBank profile")
+    return _vaultbank_projection(user_id, state.data)
+
+
+@app.put(f"{settings.api_prefix}/vaultbank/cards/{{card_id}}/freeze", tags=["vaultbank"])
+async def set_vaultbank_card_freeze(
+    card_id: str,
+    payload: CardFreezeRequest,
+    user_id: str = Depends(get_user_id),
+) -> Dict[str, Any]:
+    def mutate(data: Dict[str, Any]) -> Dict[str, Any]:
+        card = next((item for item in data.get("credit_cards", []) if item.get("id") == card_id), None)
+        if card is None:
+            raise HTTPException(status_code=404, detail="Credit card not found")
+        card["card_frozen"] = payload.frozen
+        return data
+
+    state = await store.mutate_data(user_id, mutate, "Updated card freeze status")
+    return _vaultbank_projection(user_id, state.data)
+
+
+@app.post(f"{settings.api_prefix}/vaultbank/cards/{{card_id}}/payments", tags=["vaultbank"])
+async def pay_vaultbank_card(
+    card_id: str,
+    payload: CardPaymentRequest,
+    user_id: str = Depends(get_user_id),
+) -> Dict[str, Any]:
+    now = datetime.utcnow().isoformat()
+
+    def mutate(data: Dict[str, Any]) -> Dict[str, Any]:
+        card = next((item for item in data.get("credit_cards", []) if item.get("id") == card_id), None)
+        account = next(
+            (item for item in data.get("accounts", []) if item.get("id") == payload.account_id),
+            None,
+        )
+        if card is None:
+            raise HTTPException(status_code=404, detail="Credit card not found")
+        if account is None:
+            raise HTTPException(status_code=404, detail="Source account not found")
+        if payload.amount > float(account.get("available_balance", 0)):
+            raise HTTPException(status_code=409, detail="Insufficient funds")
+        card["current_balance"] = max(0, float(card.get("current_balance", 0)) - payload.amount)
+        card.setdefault("transactions", []).insert(
+            0,
+            {
+                "id": f"cardpay_{uuid.uuid4().hex[:12]}",
+                "date": now,
+                "post_date": now,
+                "description": "Online Payment",
+                "amount": payload.amount,
+                "transaction_amount": payload.amount,
+                "billing_amount": payload.amount,
+                "transaction_currency": "USD",
+                "billing_currency": "USD",
+                "card_number": card.get("card_number"),
+                "category": "Payment",
+                "type": "credit",
+            },
+        )
+        account["current_balance"] -= payload.amount
+        account["available_balance"] -= payload.amount
+        account.setdefault("transactions", []).insert(
+            0,
+            {
+                "id": f"txn_{uuid.uuid4().hex[:12]}",
+                "date": now,
+                "post_date": now,
+                "description": f"Credit Card Payment - {card.get('card_number', '')}",
+                "amount": -payload.amount,
+                "transaction_amount": payload.amount,
+                "billing_amount": payload.amount,
+                "transaction_currency": account.get("currency", "USD"),
+                "billing_currency": account.get("currency", "USD"),
+                "card_number": account.get("account_number"),
+                "category": "Payment",
+                "type": "debit",
+                "running_balance": account["current_balance"],
+            },
+        )
+        return data
+
+    state = await store.mutate_data(user_id, mutate, "Processed credit card payment")
+    return _vaultbank_projection(user_id, state.data)
+
+
+@app.post(f"{settings.api_prefix}/vaultbank/payees", tags=["vaultbank"])
+async def create_vaultbank_payee(
+    payload: PayeeRequest, user_id: str = Depends(get_user_id)
+) -> Dict[str, Any]:
+    payee = {"id": f"payee_{uuid.uuid4().hex[:12]}", **payload.model_dump(exclude_none=True)}
+
+    def mutate(data: Dict[str, Any]) -> Dict[str, Any]:
+        data.setdefault("bill_pay", {}).setdefault("payees", []).append(payee)
+        return data
+
+    state = await store.mutate_data(user_id, mutate, "Added payee")
+    return {"user_id": user_id, "payee": payee, "data": _vaultbank_projection(user_id, state.data)["data"]}
+
+
+@app.patch(f"{settings.api_prefix}/vaultbank/payees/{{payee_id}}", tags=["vaultbank"])
+async def update_vaultbank_payee(
+    payee_id: str,
+    payload: PayeeRequest,
+    user_id: str = Depends(get_user_id),
+) -> Dict[str, Any]:
+    values = payload.model_dump(exclude_none=True)
+
+    def mutate(data: Dict[str, Any]) -> Dict[str, Any]:
+        payee = next(
+            (item for item in data.setdefault("bill_pay", {}).setdefault("payees", []) if item.get("id") == payee_id),
+            None,
+        )
+        if payee is None:
+            raise HTTPException(status_code=404, detail="Payee not found")
+        payee.update(values)
+        return data
+
+    state = await store.mutate_data(user_id, mutate, "Updated payee")
+    return _vaultbank_projection(user_id, state.data)
+
+
+@app.delete(f"{settings.api_prefix}/vaultbank/payees/{{payee_id}}", tags=["vaultbank"])
+async def delete_vaultbank_payee(
+    payee_id: str, user_id: str = Depends(get_user_id)
+) -> Dict[str, Any]:
+    def mutate(data: Dict[str, Any]) -> Dict[str, Any]:
+        bill_pay = data.setdefault("bill_pay", {})
+        payees = bill_pay.setdefault("payees", [])
+        if not any(item.get("id") == payee_id for item in payees):
+            raise HTTPException(status_code=404, detail="Payee not found")
+        if any(item.get("payee_id") == payee_id for item in bill_pay.get("scheduled_payments", [])):
+            raise HTTPException(status_code=409, detail="Payee has a scheduled payment")
+        bill_pay["payees"] = [item for item in payees if item.get("id") != payee_id]
+        return data
+
+    state = await store.mutate_data(user_id, mutate, "Deleted payee")
+    return _vaultbank_projection(user_id, state.data)
+
+
+@app.delete(f"{settings.api_prefix}/vaultbank/transfers/{{transfer_id}}", tags=["vaultbank"])
+async def cancel_vaultbank_transfer(
+    transfer_id: str, user_id: str = Depends(get_user_id)
+) -> Dict[str, Any]:
+    def mutate(data: Dict[str, Any]) -> Dict[str, Any]:
+        transfers = data.setdefault("transfers", {}).setdefault("scheduled", [])
+        if not any(item.get("id") == transfer_id for item in transfers):
+            raise HTTPException(status_code=404, detail="Scheduled transfer not found")
+        data["transfers"]["scheduled"] = [item for item in transfers if item.get("id") != transfer_id]
+        return data
+
+    state = await store.mutate_data(user_id, mutate, "Cancelled scheduled transfer")
+    return _vaultbank_projection(user_id, state.data)
+
+
+@app.delete(f"{settings.api_prefix}/vaultbank/payments/{{payment_id}}", tags=["vaultbank"])
+async def cancel_vaultbank_payment(
+    payment_id: str, user_id: str = Depends(get_user_id)
+) -> Dict[str, Any]:
+    def mutate(data: Dict[str, Any]) -> Dict[str, Any]:
+        payments = data.setdefault("bill_pay", {}).setdefault("scheduled_payments", [])
+        if not any(item.get("id") == payment_id for item in payments):
+            raise HTTPException(status_code=404, detail="Scheduled payment not found")
+        data["bill_pay"]["scheduled_payments"] = [
+            item for item in payments if item.get("id") != payment_id
+        ]
+        return data
+
+    state = await store.mutate_data(user_id, mutate, "Cancelled scheduled payment")
+    return _vaultbank_projection(user_id, state.data)
+
+
+def _investment_account(data: Dict[str, Any], account_type: str) -> Dict[str, Any]:
+    investments = data.setdefault("investments", {})
+    if account_type == "brokerage":
+        return investments.setdefault("brokerage", {})
+    account = next(
+        (item for item in investments.setdefault("retirement", []) if item.get("account_type") == account_type),
+        None,
+    )
+    if account is None:
+        raise HTTPException(status_code=404, detail="Investment account not found")
+    return account
+
+
+@app.post(f"{settings.api_prefix}/vaultbank/investments/{{account_type}}/trades", tags=["vaultbank"])
+async def execute_vaultbank_trade(
+    account_type: str,
+    payload: InvestmentTradeRequest,
+    user_id: str = Depends(get_user_id),
+) -> Dict[str, Any]:
+    total = payload.quantity * payload.price
+    trade = {
+        "id": f"trade_{uuid.uuid4().hex[:12]}",
+        "symbol": payload.symbol,
+        "type": payload.trade_type,
+        "quantity": payload.quantity,
+        "price": payload.price,
+        "total": total,
+        "date": datetime.utcnow().isoformat(),
+    }
+
+    def mutate(data: Dict[str, Any]) -> Dict[str, Any]:
+        account = _investment_account(data, account_type)
+        holdings = account.setdefault("holdings", [])
+        holding = next((item for item in holdings if item.get("symbol") == payload.symbol), None)
+        cash = float(account.get("cash_balance", 0))
+        if payload.trade_type == "buy":
+            if total > cash:
+                raise HTTPException(status_code=409, detail="Insufficient investment cash")
+            if holding is None:
+                holding = {
+                    "symbol": payload.symbol,
+                    "name": payload.symbol,
+                    "quantity": 0,
+                    "average_cost": payload.price,
+                    "current_price": payload.price,
+                    "current_value": 0,
+                    "gain_loss": 0,
+                    "gain_loss_percent": 0,
+                }
+                holdings.append(holding)
+            old_quantity = float(holding.get("quantity", 0))
+            old_cost = float(holding.get("average_cost", 0)) * old_quantity
+            new_quantity = old_quantity + payload.quantity
+            holding["quantity"] = new_quantity
+            holding["average_cost"] = (old_cost + total) / new_quantity
+            holding["current_value"] = new_quantity * float(holding.get("current_price", payload.price))
+            account["cash_balance"] = cash - total
+        else:
+            if holding is None or float(holding.get("quantity", 0)) < payload.quantity:
+                raise HTTPException(status_code=409, detail="Insufficient shares")
+            holding["quantity"] = float(holding["quantity"]) - payload.quantity
+            account["cash_balance"] = cash + total
+            if holding["quantity"] == 0:
+                holdings.remove(holding)
+            else:
+                holding["current_value"] = holding["quantity"] * float(
+                    holding.get("current_price", payload.price)
+                )
+        account.setdefault("trades", []).insert(0, trade)
+        account["total_value"] = float(account.get("cash_balance", 0)) + sum(
+            float(item.get("current_value", 0)) for item in holdings
+        )
+        return data
+
+    state = await store.mutate_data(user_id, mutate, "Executed investment trade")
+    return {"user_id": user_id, "trade": trade, "data": _vaultbank_projection(user_id, state.data)["data"]}
+
+
+@app.post(f"{settings.api_prefix}/vaultbank/loans", tags=["vaultbank"])
+async def apply_for_vaultbank_loan(
+    payload: LoanApplicationRequest, user_id: str = Depends(get_user_id)
+) -> Dict[str, Any]:
+    rate = {"auto": 4.5, "mortgage": 6.25, "personal": 7.5}[payload.loan_type]
+    monthly_rate = rate / 100 / 12
+    monthly_payment = (
+        payload.amount * monthly_rate * (1 + monthly_rate) ** payload.term_months
+    ) / ((1 + monthly_rate) ** payload.term_months - 1)
+    now = datetime.utcnow()
+    balance = payload.amount
+    schedule = []
+    for index in range(1, min(payload.term_months, 60) + 1):
+        interest = balance * monthly_rate
+        principal = monthly_payment - interest
+        balance -= principal
+        schedule.append(
+            {
+                "date": (now + timedelta(days=30 * index)).isoformat(),
+                "amount": monthly_payment,
+                "principal": principal,
+                "interest": interest,
+                "remaining_balance": max(0, balance),
+                "status": "paid" if index <= 12 else ("pending" if index == 13 else "scheduled"),
+            }
+        )
+    loan = {
+        "id": f"loan_{payload.loan_type}_{uuid.uuid4().hex[:10]}",
+        "type": payload.loan_type,
+        "loan_number": f"{payload.loan_type[:2].upper()}-{uuid.uuid4().hex[:4]}-{uuid.uuid4().hex[:4]}",
+        "original_amount": payload.amount,
+        "current_balance": payload.amount,
+        "interest_rate": rate,
+        "monthly_payment": monthly_payment,
+        "due_date": (now + timedelta(days=30)).isoformat(),
+        "start_date": now.isoformat(),
+        "maturity_date": (now + timedelta(days=30 * payload.term_months)).isoformat(),
+        "payment_schedule": schedule,
+        "payment_history": [],
+        "status": "in_application",
+    }
+
+    def mutate(data: Dict[str, Any]) -> Dict[str, Any]:
+        data.setdefault("loans", []).append(loan)
+        return data
+
+    state = await store.mutate_data(user_id, mutate, "Submitted loan application")
+    return {"user_id": user_id, "loan": loan, "data": _vaultbank_projection(user_id, state.data)["data"]}
+
+
+@app.post(f"{settings.api_prefix}/vaultbank/loans/{{loan_id}}/payments", tags=["vaultbank"])
+async def pay_vaultbank_loan(
+    loan_id: str,
+    payload: LoanPaymentRequest,
+    user_id: str = Depends(get_user_id),
+) -> Dict[str, Any]:
+    now = datetime.utcnow().isoformat()
+
+    def mutate(data: Dict[str, Any]) -> Dict[str, Any]:
+        loan = next((item for item in data.get("loans", []) if item.get("id") == loan_id), None)
+        account = next(
+            (item for item in data.get("accounts", []) if item.get("id") == payload.account_id),
+            None,
+        )
+        if loan is None:
+            raise HTTPException(status_code=404, detail="Loan not found")
+        if account is None:
+            raise HTTPException(status_code=404, detail="Source account not found")
+        if payload.amount > float(account.get("available_balance", 0)):
+            raise HTTPException(status_code=409, detail="Insufficient funds")
+        if payload.amount > float(loan.get("current_balance", 0)):
+            raise HTTPException(status_code=409, detail="Payment exceeds loan balance")
+        loan["current_balance"] = max(0, float(loan["current_balance"]) - payload.amount)
+        loan.setdefault("payment_history", []).insert(
+            0, {"id": f"loanpay_{uuid.uuid4().hex[:12]}", "date": now, "amount": payload.amount}
+        )
+        account["current_balance"] -= payload.amount
+        account["available_balance"] -= payload.amount
+        return data
+
+    state = await store.mutate_data(user_id, mutate, "Applied extra loan payment")
+    return _vaultbank_projection(user_id, state.data)
+
+
+@app.post(f"{settings.api_prefix}/vaultbank/mobile-deposits", tags=["vaultbank"])
+async def create_vaultbank_mobile_deposit(
+    payload: MobileDepositRequest, user_id: str = Depends(get_user_id)
+) -> Dict[str, Any]:
+    now = datetime.utcnow().isoformat()
+    deposit = {
+        "id": f"deposit_{uuid.uuid4().hex[:12]}",
+        "account_id": payload.account_id,
+        "amount": payload.amount,
+        "front_image": payload.front_image,
+        "back_image": payload.back_image,
+        "date": now,
+        "status": "completed",
+        "reference_number": f"MD{uuid.uuid4().hex[:10].upper()}",
+    }
+
+    def mutate(data: Dict[str, Any]) -> Dict[str, Any]:
+        account = next(
+            (item for item in data.get("accounts", []) if item.get("id") == payload.account_id),
+            None,
+        )
+        if account is None:
+            raise HTTPException(status_code=404, detail="Deposit account not found")
+        account["current_balance"] += payload.amount
+        account["available_balance"] += payload.amount
+        account.setdefault("transactions", []).insert(
+            0,
+            {
+                "id": f"txn_{uuid.uuid4().hex[:12]}",
+                "date": now,
+                "post_date": now,
+                "description": "Mobile Deposit",
+                "amount": payload.amount,
+                "type": "credit",
+                "category": "Deposit",
+                "running_balance": account["current_balance"],
+            },
+        )
+        data.setdefault("mobile_deposits", []).append(deposit)
+        return data
+
+    state = await store.mutate_data(user_id, mutate, "Mobile deposit processed")
+    return {"user_id": user_id, "deposit": deposit, "data": _vaultbank_projection(user_id, state.data)["data"]}
 
 
 # MCP Tools
@@ -413,12 +901,13 @@ async def execute_transfer(
     transfer_id = f"transfer_{uuid.uuid4().hex[:12]}"
     reference_number = f"TXF{str(int((1e9 - 1) * (hash(transfer_id) % 1e9) / 1e9) + 1e8)}"[:12]
 
+    is_scheduled = payload.frequency != "once" or bool(payload.scheduled_date)
     transfer = {
         "id": transfer_id,
         "from_account_id": payload.from_account_id,
         "amount": payload.amount,
-        "date": payload.scheduled_date or None,
-        "status": "pending" if (payload.frequency != "once" or payload.scheduled_date) else "completed",
+        "date": payload.scheduled_date or datetime.utcnow().isoformat(),
+        "status": "pending" if is_scheduled else "completed",
         "type": payload.transfer_type,
         "frequency": payload.frequency,
         "memo": payload.memo,
@@ -534,7 +1023,6 @@ async def execute_transfer(
             user_id
         )
 
-    is_scheduled = payload.frequency != "once" or payload.scheduled_date
     return TransferResponse(
         success=True,
         transfer_id=transfer_id,
@@ -591,12 +1079,15 @@ async def execute_payment(
     payment_id = f"payment_{uuid.uuid4().hex[:12]}"
     reference_number = f"PMT{str(int((1e9 - 1) * (hash(payment_id) % 1e9) / 1e9) + 1e8)}"[:12]
 
+    is_scheduled = payload.frequency != "once" or bool(payload.scheduled_date)
+    payment_date = payload.scheduled_date or datetime.utcnow().isoformat()
     payment = {
         "id": payment_id,
         "from_account_id": payload.from_account_id,
         "amount": payload.amount,
-        "date": payload.scheduled_date or None,
-        "status": "pending" if payload.scheduled_date else "completed",
+        "date": payment_date,
+        "status": "active" if is_scheduled else "completed",
+        "frequency": payload.frequency,
         "reference_number": reference_number,
         "memo": payload.memo,
     }
@@ -616,6 +1107,7 @@ async def execute_payment(
 
         payment["payee_id"] = payload.payee_id
         payment["payee_name"] = payee.get("name", "Unknown")
+        payment["from_account_name"] = from_account.get("nickname", "Account")
         payment_type_desc = f"Bill payment to {payee.get('name', 'Unknown')}"
 
         # Add to bill pay history
@@ -640,7 +1132,7 @@ async def execute_payment(
         bill_pay_history = current_state.data.get("bill_pay", {}).get("payment_history", [])
 
     # For immediate payments, update account balances
-    if not payload.scheduled_date:
+    if not is_scheduled:
         now = datetime.utcnow()
         updated_accounts = []
         for account in accounts:
@@ -705,13 +1197,8 @@ async def execute_payment(
         # For scheduled payments, add to scheduled list
         if payload.payment_type == "bill":
             scheduled_payment = {
-                "id": payment_id,
-                "payee_id": payload.payee_id,
-                "amount": payload.amount,
-                "frequency": "once",
-                "next_date": payload.scheduled_date,
-                "from_account_id": payload.from_account_id,
-                "status": "active"
+                **payment,
+                "next_date": payment_date,
             }
             scheduled_payments = current_state.data.get("bill_pay", {}).get("scheduled_payments", [])
             await patch_state(
@@ -720,7 +1207,7 @@ async def execute_payment(
                         "bill_pay": {
                             "payees": current_state.data.get("bill_pay", {}).get("payees", []),
                             "scheduled_payments": scheduled_payments + [scheduled_payment],
-                            "payment_history": bill_pay_history
+                            "payment_history": bill_pay_history + [payment]
                         }
                     },
                     note=f"Scheduled payment via API"
@@ -728,7 +1215,6 @@ async def execute_payment(
                 user_id
             )
 
-    is_scheduled = bool(payload.scheduled_date)
     return PaymentResponse(
         success=True,
         payment_id=payment_id,

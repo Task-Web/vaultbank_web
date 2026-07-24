@@ -5,18 +5,17 @@ import { StateProvider, useStateContext } from './StateContext';
 
 vi.mock('../apiClient', () => ({
   api: {
-    getState: vi.fn(),
-    patchState: vi.fn(),
-    replaceState: vi.fn(),
+    getDashboard: vi.fn(),
+    updateProfile: vi.fn(),
   },
 }));
 
 const UpdateProbe = () => {
-  const { updateState } = useStateContext();
+  const { applyVaultbankChange } = useStateContext();
 
   return (
-    <button onClick={() => updateState({ enabled: true }, 'Updated from probe')}>
-      Update state
+    <button onClick={() => applyVaultbankChange({ user_profile: { first_name: 'Ada' } })}>
+      Update profile
     </button>
   );
 };
@@ -24,26 +23,28 @@ const UpdateProbe = () => {
 describe('StateContext', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    api.getState.mockResolvedValue({ state: { data: {}, note: null } });
-    api.patchState.mockResolvedValue({
-      state: { data: { enabled: true }, note: 'Updated from probe' },
-    });
+    api.getDashboard.mockResolvedValue({ data: { user_profile: {} } });
+    api.updateProfile.mockResolvedValue({ data: { user_profile: { first_name: 'Ada' } } });
   });
 
-  it('forwards the second updateState argument as the state note', async () => {
+  it('routes profile changes through the profile API', async () => {
     render(
       <StateProvider>
         <UpdateProbe />
       </StateProvider>
     );
 
-    fireEvent.click(screen.getByRole('button', { name: 'Update state' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Update profile' }));
 
     await waitFor(() =>
-      expect(api.patchState).toHaveBeenCalledWith(
-        { enabled: true },
-        'Updated from probe'
-      )
+      expect(api.updateProfile).toHaveBeenCalledWith({
+        first_name: 'Ada',
+        last_name: undefined,
+        email: undefined,
+        phone: undefined,
+        address: undefined,
+        communication_preferences: undefined,
+      })
     );
   });
 });

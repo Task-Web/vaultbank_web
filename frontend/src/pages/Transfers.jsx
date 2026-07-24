@@ -49,7 +49,7 @@ import { formatCurrency, formatDate, formatTime, maskAccountNumber } from '../ut
 
 const Transfers = () => {
   const navigate = useNavigate();
-  const { state, refreshState, updateState } = useStateContext();
+  const { state, refreshState, applyVaultbankChange } = useStateContext();
   const toast = useToast();
 
   const [activeTab, setActiveTab] = useState('transfer'); // 'transfer' or 'history'
@@ -264,7 +264,7 @@ const Transfers = () => {
         });
 
         // Update state with account changes and history
-        await updateState({
+        await applyVaultbankChange({
           data: {
             accounts: updatedAccounts,
             transfers: {
@@ -275,7 +275,7 @@ const Transfers = () => {
         });
       } else {
         // For scheduled or recurring transfers, add to scheduled list
-        await updateState({
+        await applyVaultbankChange({
           data: {
             transfers: {
               history: transferHistory,
@@ -331,7 +331,7 @@ const Transfers = () => {
   const cancelScheduledTransfer = async (transferId) => {
     try {
       const updatedScheduled = scheduledTransfers.filter(t => t.id !== transferId);
-      await updateState({
+      await applyVaultbankChange({
         data: {
           transfers: {
             history: transferHistory,

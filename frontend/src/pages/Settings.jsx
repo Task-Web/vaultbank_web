@@ -61,7 +61,7 @@ import {
 import { useStateContext } from '../contexts/StateContext';
 
 const Settings = () => {
-  const { state, loading, error, updateState } = useStateContext();
+  const { state, loading, error, applyVaultbankChange } = useStateContext();
   const toast = useToast();
   const { isOpen: isEditProfileOpen, onOpen: onEditProfileOpen, onClose: onEditProfileClose } = useDisclosure();
   const { isOpen: isFreezeModalOpen, onOpen: onFreezeModalOpen, onClose: onFreezeModalClose } = useDisclosure();
@@ -103,7 +103,7 @@ const Settings = () => {
     );
   }
 
-  if (!state || !state.state || !state.data) {
+  if (!state || !state.data) {
     return (
       <Box p={8}>
         <Alert status="info">
@@ -189,7 +189,7 @@ const Settings = () => {
         },
       };
 
-      await updateState({
+      await applyVaultbankChange({
         user_profile: updatedProfile,
       });
 
@@ -223,7 +223,7 @@ const Settings = () => {
         [key]: !prefs[key],
       };
 
-      await updateState({
+      await applyVaultbankChange({
         user_profile: {
           ...user_profile,
           communication_preferences: updatedPrefs,
@@ -264,7 +264,7 @@ const Settings = () => {
           : card
       );
 
-      await updateState({
+      await applyVaultbankChange({
         credit_cards: updatedCards,
       });
 

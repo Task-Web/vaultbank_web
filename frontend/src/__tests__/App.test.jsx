@@ -8,27 +8,19 @@ const buildResponse = (data, status = 200) =>
     headers: { 'Content-Type': 'application/json' },
   });
 
-const createStatePayload = (userProfile) => ({
+const createDashboardPayload = (userProfile) => ({
   user_id: 'test-user',
-  state: {
-    meta: {
-      created_at: '2024-01-01T00:00:00Z',
-      updated_at: '2024-01-01T00:00:00Z',
-      version: 1,
+  data: {
+    accounts: [],
+    credit_cards: [],
+    loans: [],
+    bill_pay: {
+      payees: [],
+      scheduled_payments: [],
+      payment_history: [],
     },
-    data: {
-      accounts: [],
-      credit_cards: [],
-      loans: [],
-      bill_pay: {
-        payees: [],
-        scheduled_payments: [],
-        payment_history: [],
-      },
-      transfers: { history: [], scheduled: [] },
-      user_profile: userProfile,
-    },
-    note: null,
+    transfers: { history: [], scheduled: [] },
+    user_profile: userProfile,
   },
 });
 
@@ -36,7 +28,7 @@ describe('App', () => {
   beforeEach(() => {
     globalThis.fetch = vi.fn(async () =>
       buildResponse(
-        createStatePayload({ first_name: 'Jane', last_name: 'Smith' })
+        createDashboardPayload({ first_name: 'Jane', last_name: 'Smith' })
       )
     );
   });
@@ -59,7 +51,7 @@ describe('App', () => {
 
   it('uses a neutral fallback for a legacy state without a profile', async () => {
     globalThis.fetch.mockImplementationOnce(async () =>
-      buildResponse(createStatePayload(undefined))
+      buildResponse(createDashboardPayload(undefined))
     );
 
     render(<App />);

@@ -68,7 +68,7 @@ const Statements = () => {
     );
   }
 
-  if (!state || !state.state || !state.data) {
+  if (!state || !state.data) {
     return (
       <Box p={8}>
         <Alert status="info">

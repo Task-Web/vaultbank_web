@@ -25,5 +25,4 @@ services:
       caddy: "${CADDY_SCHEME-http://}vaultbank.${HOST_SUFFIX:-localhost}"
       caddy.0_reverse_proxy: "/api* vaultbank_web_backend:8000"
       caddy.1_reverse_proxy: "/mcp* vaultbank_web_backend:8000"
-      caddy.2_reverse_proxy: "/state-doc* vaultbank_web_backend:8000"
-      caddy.3_reverse_proxy: "vaultbank_web_frontend:80"
+      caddy.2_reverse_proxy: "vaultbank_web_frontend:80"

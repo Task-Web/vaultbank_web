@@ -425,7 +425,7 @@ const StatementsList = ({ statements }) => {
 };
 
 const CreditCards = () => {
-  const { state, updateState, loading } = useStateContext();
+  const { state, applyVaultbankChange, loading } = useStateContext();
   const toast = useToast();
   const bgColor = useColorModeValue('gray.50', 'gray.900');
 
@@ -608,7 +608,7 @@ const CreditCards = () => {
     );
 
     try {
-      await updateState(
+      await applyVaultbankChange(
         {
           credit_cards: updatedCards,
           accounts: updatedAccounts,
@@ -648,7 +648,7 @@ const CreditCards = () => {
     );
 
     try {
-      await updateState({ credit_cards: updatedCards }, `${cardToFreeze.card_frozen ? 'Unfreeze' : 'Freeze'} card ${cardToFreeze.card_number}`);
+      await applyVaultbankChange({ credit_cards: updatedCards }, `${cardToFreeze.card_frozen ? 'Unfreeze' : 'Freeze'} card ${cardToFreeze.card_number}`);
       setCreditCards(updatedCards);
       if (selectedCard?.id === cardToFreeze.id) {
         setSelectedCard(updatedCards.find(c => c.id === cardToFreeze.id));

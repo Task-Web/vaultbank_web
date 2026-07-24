@@ -71,7 +71,7 @@ const formatDate = (dateString) => {
 };
 
 const Investments = () => {
-  const { state, updateState, loading } = useStateContext();
+  const { state, applyVaultbankChange, loading } = useStateContext();
   const [investments, setInvestments] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedAccount, setSelectedAccount] = useState('brokerage');
@@ -247,7 +247,7 @@ const Investments = () => {
     }
 
     setInvestments(updatedInvestments);
-    await updateState({
+    await applyVaultbankChange({
       investments: updatedInvestments,
     }, `${tradeType === 'buy' ? 'Bought' : 'Sold'} ${quantity} shares of ${selectedSymbol}`);
 

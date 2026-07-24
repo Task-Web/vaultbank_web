@@ -14,7 +14,6 @@ import BillPay from './pages/BillPay';
 import CreditCards from './pages/CreditCards';
 import Investments from './pages/Investments';
 import Loans from './pages/Loans';
-import StateManage from './pages/StateManage';
 import Statements from './pages/Statements';
 import Settings from './pages/Settings';
 import MobileDeposit from './pages/MobileDeposit';

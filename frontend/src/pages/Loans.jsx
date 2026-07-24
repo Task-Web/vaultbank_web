@@ -98,7 +98,7 @@ const generatePaymentSchedule = (principal, annualRate, months, startDate) => {
 };
 
 const Loans = () => {
-  const { state, updateState, loading } = useStateContext();
+  const { state, applyVaultbankChange, loading } = useStateContext();
   const [loans, setLoans] = useState([]);
   const [selectedLoan, setSelectedLoan] = useState(null);
   const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
@@ -273,7 +273,7 @@ const Loans = () => {
     setLoans(updatedLoans);
     setSelectedLoan(updatedLoans.find(l => l.id === selectedLoan.id));
 
-    await updateState({ loans: updatedLoans, accounts: updatedAccounts });
+    await applyVaultbankChange({ loans: updatedLoans, accounts: updatedAccounts });
 
     toast({
       title: 'Payment successful',
@@ -325,7 +325,7 @@ const Loans = () => {
     setLoans(updatedLoans);
     setSelectedLoan(newLoan);
 
-    await updateState({ loans: updatedLoans });
+    await applyVaultbankChange({ loans: updatedLoans });
 
     toast({
       title: 'Application submitted',
